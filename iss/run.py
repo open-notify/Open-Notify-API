@@ -20,7 +20,7 @@
 
 import cgi
 import cgitb
-cgitb.enable() #for testing
+#cgitb.enable() #for testing
 import os, site, sys; 
 site.addsitedir(os.path.expanduser('~/lib/python2.4/site-packages/simplejson-2.1.6-py2.4-linux-x86_64.egg'))
 site.addsitedir(os.path.expanduser('~/lib/python2.4/site-packages/pyephem-3.7.4.1-py2.4-linux-x86_64.egg'))
@@ -33,6 +33,7 @@ def giveup():
   print '{message: "failure"}'
   sys.exit("catch")
 
+
 # Try to import some non-standard packages
 try:
   import ephem
@@ -41,6 +42,16 @@ try:
   import time
 except:
   giveup()
+
+origin = datetime.datetime(1970, 1, 1, 0, 0, 0)
+
+def unixtime(dt):
+  global origin
+  delta = (dt - origin)
+  seconds = delta.seconds
+  days = delta.days
+  return days*86400 + seconds
+
 
 # Read the magic TLE from the file system. This is expected to be updated by someone else
 try:
@@ -120,13 +131,13 @@ for p in range(num_passes):
 	year, month, day, hour, minute, second = tr.tuple()
 	dt = datetime.datetime(year, month, day, hour, minute, int(second))
 	
-	passes.append({"risetime": int(time.mktime(dt.timetuple())), "duration": duration})
+	passes.append({"risetime": unixtime(dt), "duration": duration})
 	
 	# Increase the time by more than a pass and less than an orbit
 	location.date = tr + 25*ephem.minute
 
 # Return object
-obj = {"request": {  "datetime":  int(time.mktime(now.timetuple()))
+obj = {"request": {  "datetime":  unixtime(now)
                     ,"latitude":  latitude
                     ,"longitude": longitude
                     ,"altitude":  altitude
