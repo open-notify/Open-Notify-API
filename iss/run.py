@@ -20,7 +20,7 @@
 
 import cgi
 import cgitb
-#cgitb.enable() #for testing
+cgitb.enable() #for testing
 import os, site, sys; 
 site.addsitedir(os.path.expanduser('~/lib/python2.4/site-packages/simplejson-2.1.6-py2.4-linux-x86_64.egg'))
 site.addsitedir(os.path.expanduser('~/lib/python2.4/site-packages/pyephem-3.7.4.1-py2.4-linux-x86_64.egg'))

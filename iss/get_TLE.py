@@ -23,6 +23,7 @@
 
 import urllib2
 import datetime
+import time
 
 # NASA's station FDO updates this page with very precise data. Only using a 
 # small bit of it for now.
@@ -41,9 +42,15 @@ data = data.split("Vector Time (GMT): ")[1:]
 
 for group in data:
   # Time the vector is valid for
-  dt = group[0:17]
-  dt = datetime.datetime.strptime(dt, "%Y/%j/%H:%M:%S")
+  datestr = group[0:17]
   
+  # parse date string
+  tm = time.strptime(datestr, "%Y/%j/%H:%M:%S")
+  
+  # change into more useful datetime object
+  dt = datetime.datetime(tm[0], tm[1], tm[2], tm[4], tm[5], tm[6])
+
+  # More parsing
   tle = group.split("TWO LINE MEAN ELEMENT SET")[1]
   tle = tle[8:160]
   lines = tle.split('\n')[0:3]
@@ -61,7 +68,7 @@ for group in data:
     """
     
     # Write to file
-    f_out = open('iss.tle','w')
+    f_out = open('/home7/opennot1/public_html/api/iss/iss.tle','w')
     for line in lines:
       f_out.write(line.strip() + "\n")
     
