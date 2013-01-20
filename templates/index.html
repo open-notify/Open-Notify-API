@@ -34,13 +34,17 @@
                 <th>Documentation</th>
               </tr>
             </thead> 
+
+            {% for api in apis %}
             <tbody>
               <tr>
-                <td><a href="/iss-now.json">ISS Location Now</a></td>
-                <td>Current ISS location over Earth (latitude/longitude)</td>
-                <td><a href="http://open-notify.org/api-doc#iss-now">api-doc#iss-now</a></td>
+                <td><a href="{{ api.link }}">{{ api.title }}</a></td>
+                <td>{{ api.desc }}</td>
+                <td><a href="{{ api.doclink }}">{{ api.docname }}</a></td>
               </tr>
             </tbody>
+            {% endfor %}
+
           </table>
         </p>
       </div>
