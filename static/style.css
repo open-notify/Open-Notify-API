@@ -1,5 +1,6 @@
-body {
+html, body {
     background:#f7f7f7;
+    height:100%;
 }
 
 a, a:link, a:visited {
@@ -19,6 +20,21 @@ a:hover {
     border-bottom:1px solid #ccc;
 }
 
-#footer .container {
-    height:100px;
+#wrapper {
+    min-height: 100%;
+}
+
+#content {
+    overflow:auto;
+    padding-bottom: 75px; 
+}
+
+#footer {
+    clear: both;
+    position: relative;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 75px;
+    margin-top: -75px;
 }
