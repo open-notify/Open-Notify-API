@@ -22,10 +22,10 @@ def jsonp(func):
     def decorated_function(*args, **kwargs):
         callback = request.args.get('callback', False)
         if callback:
-            data = str(func(*args, **kwargs).data)
+            data = str(func(*args, **kwargs)[0].data)
             content = str(callback) + '(' + data + ')'
             mimetype = 'application/javascript'
-            return current_app.response_class(content, mimetype=mimetype)
+            return current_app.response_class(content, mimetype=mimetype), func(*args, **kwargs)[1]
         else:
             return func(*args, **kwargs)
     return decorated_function
