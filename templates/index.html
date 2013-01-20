@@ -38,9 +38,9 @@
             {% for api in apis %}
             <tbody>
               <tr>
-                <td><a href="{{ api.link }}">{{ api.title }}</a></td>
-                <td>{{ api.desc }}</td>
-                <td><a href="{{ api.doclink }}">{{ api.docname }}</a></td>
+                <td><a href="{{ api.link }}">{{ api.title|safe }}</a></td>
+                <td>{{ api.desc|safe }}</td>
+                <td><a href="{{ api.doclink }}">{{ api.docname|safe }}</a></td>
               </tr>
             </tbody>
             {% endfor %}

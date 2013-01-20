@@ -36,6 +36,14 @@ API_DEFS = [  {
                 "doclink": "http://open-notify.org/api-doc#iss-now",
                 "docname": "api-doc#iss-now"
               },
+              {
+                "title": "People in Space Right Now",
+                "link": "/astros.json",
+                "desc": "The number of people in space at this moment. List of names when known.",
+                "doclink": "#",
+                "docname": "&ndash;"
+              },
+
            ]
 
 @app.route("/")
