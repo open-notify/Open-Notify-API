@@ -8,7 +8,7 @@ def json(func):
     """Returning a object gets JSONified"""
     @wraps(func)
     def decorated_function(*args, **kwargs):
-        return jsonify(func())
+        return jsonify(func(*args, **kwargs))
     return decorated_function
 
 # from farazdagi on github
@@ -42,8 +42,8 @@ def index():
     return render_template('index.html', apis=API_DEFS)
 
 @app.route("/iss-now.json")
-@json
 @jsonp
+@json
 def iss_now():
     loc = iss.get_location()
     return {"message": "success", "data": loc}
