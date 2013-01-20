@@ -1,5 +1,6 @@
+import os
 from functools import wraps
-from flask import Flask, jsonify, request, current_app, render_template
+from flask import Flask, jsonify, request, current_app, render_template, send_from_directory
 import iss
 app = Flask(__name__)
 
@@ -41,12 +42,31 @@ API_DEFS = [  {
 def index():
     return render_template('index.html', apis=API_DEFS)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 @app.route("/iss-now.json")
 @jsonp
 @json
 def iss_now():
     loc = iss.get_location()
     return {"message": "success", "data": loc}
+
+@app.route("/astros.json")
+@jsonp
+@json
+def astros():
+    Astros  = [
+              {'name': "Oleg Novitskiy",    'craft': "ISS"}
+            , {'name': "Evgeny Tarelkin",   'craft': "ISS"}
+            , {'name': "Kevin A. Ford",     'craft': "ISS"}
+            , {'name': "Roman Romanenko",   'craft': "ISS"}
+            , {'name': "Thomas Marshburn",  'craft': "ISS"}
+            , {'name': "Chris Hadfield",    'craft': "ISS"}
+          ] 
+    return {'message': "success", 'number': len(Astros), 'people': Astros}
 
 if __name__ == "__main__":
     app.run()
