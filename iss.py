@@ -4,8 +4,11 @@ from calendar import timegm
 from math import degrees
 import redis
 import json
+import os 
 
-r = redis.StrictRedis(host="127.0.0.1", port=6379, db=0)
+REDIS_URL = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
+r = redis.StrictRedis.from_url(REDIS_URL)
+
 
 def get_location():
 

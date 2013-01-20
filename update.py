@@ -3,9 +3,10 @@ import json
 import urllib2
 import datetime
 import time
+import os
 
-r = redis.StrictRedis(host="127.0.0.1", port=6379, db=0)
-
+REDIS_URL = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
+r = redis.StrictRedis.from_url(REDIS_URL)
 
 # NASA's station FDO updates this page with very precise data. Only using a 
 # small bit of it for now.
