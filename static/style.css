@@ -1,0 +1,24 @@
+body {
+    background:#f7f7f7;
+}
+
+a, a:link, a:visited {
+    color:#c20;
+}
+
+a:hover {
+    color:#a10;
+}
+
+#header {
+    height:45px;
+    background:#333;
+    color:#eee;
+    padding-top:15px;
+    border-top:4px solid #000;
+    border-bottom:1px solid #ccc;
+}
+
+#footer .container {
+    height:100px;
+}

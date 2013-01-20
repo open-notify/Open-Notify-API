@@ -1,12 +1,60 @@
+<!doctype html>
 <html>
-<head><title>asdf</title></head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="/static/style.css" />
+
+  <title>open-notify.org APIs</title>
+</head>
 <body>
-    <h1>Open Notify APIs</h1>
-    <hr />
-    <p>
-        <ul>
-            <li><a href="/iss-now.json">iss-now</a>
-        </ul>
-    </p>
+
+  <div id="header">
+    <div class="container">
+      <div class="navbar">
+        <a class="brand" href="http://www.open-notify.org">Open Notify</a>
+        <h2>API Server</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <h3>Current APIs:</h3>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <h4>JSON</h4>
+        <p>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Documentation</th>
+              </tr>
+            </thead> 
+            <tbody>
+              <tr>
+                <td><a href="/iss-now.json">ISS Location Now</a></td>
+                <td>Current ISS location over Earth (latitude/longitude)</td>
+                <td><a href="http://open-notify.org/api-doc#iss-now">api-doc#iss-now</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div id="footer">
+    <div class="navbar navbar-fixed-bottom">
+      <div class="container">
+        <hr />
+        Made by <a href="https://twitter.com/natronics">@natronics</a>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
