@@ -118,13 +118,10 @@ def iss_pass():
 @json
 def astros():
     Astros  = [
-              {'name': "Oleg Novitskiy",    'craft': "Soyuz TMA-06M"}
-            , {'name': "Evgeny Tarelkin",   'craft': "Soyuz TMA-06M"}
-            , {'name': "Kevin A. Ford",     'craft': "Soyuz TMA-06M"}
-            , {'name': "Roman Romanenko",   'craft': "ISS"}
-            , {'name': "Thomas Marshburn",  'craft': "ISS"}
-            , {'name': "Chris Hadfield",    'craft': "ISS"}
-          ] 
+        {'name': "Roman Romanenko",   'craft': "ISS"},
+        {'name': "Thomas Marshburn",  'craft': "ISS"},
+        {'name': "Chris Hadfield",    'craft': "ISS"},
+    ] 
     return {'message': "success", 'number': len(Astros), 'people': Astros}, 200
 
 if __name__ == "__main__":
