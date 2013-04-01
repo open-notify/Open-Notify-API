@@ -1,5 +1,6 @@
 ---
 layout: apidoc
+name: issnow
 title: Open Notify -- API Doc | ISS Current Location
 ---
 

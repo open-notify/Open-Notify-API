@@ -12,3 +12,4 @@ navigation:
 apis:
  - text: ISS Location
    url: /Open-Notify-API/ISS-Location-Now
+   name: issnow
