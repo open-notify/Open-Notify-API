@@ -1,5 +1,6 @@
 ---
 layout: page
+name: apidoc
 title: Open Notify -- API Documentation
 ---
 
