@@ -1,12 +1,11 @@
 ---
 layout: default
 permalink: /
-title: Open Notify
+title: Open Notify -- API Documentation
 ---
 
-# Open APIs From Space
+# API Documentation
 
-**Open Notify** is an open source project to provide a simple front end for some of NASA's awesome
-data. I provide a collection of [APIs](http://www.makeuseof.com/tag/api-good-technology-explained/)
-related to space and spacecraft.
+Current APIs:
 
+ - ISS Location
