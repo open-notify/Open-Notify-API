@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: apidoc
 title: Open Notify -- API Doc | ISS Current Location
 ---
 
@@ -17,7 +17,7 @@ This is a simple api to return the current location of the ISS. When fetched it
 returns the current latitude and longitude of the space station with a unix
 timestamp that it was valid for. There are no parameters to the API
 
-### Output
+## Output
 
 The output is JSON. It has a message object that should say success unless something
 went wrong on my end. There is a timestamp which is in unix time and iss_position
@@ -35,7 +35,7 @@ which has a latitude longitude pair.
 }
 ```
 
-### Examples
+## Examples
 
 ```
 $ curl http://api.open-notify.org/iss-now/
