@@ -1,0 +1,3 @@
+[submodule "docs/_layouts"]
+	path = docs/_layouts
+	url = git://github.com/open-notify/jekyll-layouts.git
