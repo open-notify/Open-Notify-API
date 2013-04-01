@@ -10,6 +10,9 @@ navigation:
   url: /about.html
 
 apis:
- - text: ISS Location
+ - text: ISS Current Location
    url: /Open-Notify-API/ISS-Location-Now
    name: issnow
+ - text: ISS Pass Times
+   url: /Open-Notify-API/ISS-Pass-Times
+   name: isspass
