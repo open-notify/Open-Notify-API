@@ -1,0 +1,10 @@
+navigation:
+- text: Home
+  url: /
+- text: API Docs
+  url: /Open-Notify-API
+- text: Source Code
+  url: https://github.com/open-notify
+- text: About
+  url: /about.html
+  layout: post
