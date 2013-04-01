@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /Open-Notify-API
+permalink: /Open-Notify-API/index.html
 title: Open Notify -- API Documentation
 ---
 
@@ -8,4 +8,4 @@ title: Open Notify -- API Documentation
 
 Current APIs:
 
- - ISS Location
+ - [ISS Location Now](/Open-Notify-API/ISS-Location-Now)
