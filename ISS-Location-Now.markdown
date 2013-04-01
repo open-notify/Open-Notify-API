@@ -39,6 +39,6 @@ which has a latitude longitude pair.
 
 ## Examples
 
-{% highlight Bash %}
+{% highlight bash %}
 $ curl http://api.open-notify.org/iss-now/
 {% endhighlight %}
