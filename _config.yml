@@ -3,6 +3,7 @@ navigation:
   url: /
 - text: API Docs
   url: /Open-Notify-API
+  layout: page
 - text: Source Code
   url: https://github.com/open-notify
 - text: About
