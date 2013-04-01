@@ -24,13 +24,7 @@ went wrong on my end. There is a timestamp which is in unix time and iss_positio
 which has a latitude longitude pair.
 
 
-{% highlight python %}
-def foo():
-  return 'foo'
-{% endhighlight %}
-
-
-```
+{% highlight JavaScript %}
 {
     "timestamp": %a unix time stamp%,
     "message": "success",
@@ -40,10 +34,11 @@ def foo():
           "longitude": %The longitude in decimal degress%
       }
 }
-```
+{% endhighlight %}
+
 
 ## Examples
 
-```
+{% highlight Bash %}
 $ curl http://api.open-notify.org/iss-now/
-```
+{% endhighlight %}
