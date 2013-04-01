@@ -7,4 +7,7 @@ navigation:
   url: https://github.com/open-notify
 - text: About
   url: /about.html
-  layout: post
+
+apis:
+ - text: ISS Location
+   url: /Open-Notify-API/ISS-Location-Now
