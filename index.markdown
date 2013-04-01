@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /
+permalink: /Open-Notify-API
 title: Open Notify -- API Documentation
 ---
 
