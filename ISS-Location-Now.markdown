@@ -24,7 +24,7 @@ went wrong on my end. There is a timestamp which is in unix time and iss_positio
 which has a latitude longitude pair.
 
 
-{% highlight JavaScript %}
+{% highlight javascript %}
 {
     "timestamp": %a unix time stamp%,
     "message": "success",
@@ -37,8 +37,3 @@ which has a latitude longitude pair.
 {% endhighlight %}
 
 
-## Examples
-
-{% highlight bash %}
-$ curl http://api.open-notify.org/iss-now/
-{% endhighlight %}
