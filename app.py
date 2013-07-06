@@ -1,34 +1,9 @@
 import os
-from functools import wraps
-from flask import Flask, jsonify, request, current_app, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory
 import iss
-import util
-
+from util import *
+ 
 app = Flask(__name__)
-
-# json endpoint decorator
-def json(func):
-    """Returning a object gets JSONified"""
-    @wraps(func)
-    def decorated_function(*args, **kwargs):
-        return jsonify(func(*args, **kwargs)[0]), func(*args, **kwargs)[1]
-    return decorated_function
-
-# from farazdagi on github
-#   https://gist.github.com/1089923
-def jsonp(func):
-    """Wraps JSONified output for JSONP requests."""
-    @wraps(func)
-    def decorated_function(*args, **kwargs):
-        callback = request.args.get('callback', False)
-        if callback:
-            data = str(func(*args, **kwargs)[0].data)
-            content = str(callback) + '(' + data + ')'
-            mimetype = 'application/javascript'
-            return current_app.response_class(content, mimetype=mimetype), func(*args, **kwargs)[1]
-        else:
-            return func(*args, **kwargs)
-    return decorated_function
 
 # APIs:
 API_DEFS = [  {
@@ -92,7 +67,7 @@ def iss_pass():
     # Sanitize inputs
     lat = request.args.get('lat', False)
     if lat:
-        lat = util.safe_float(lat, (-90.0,90.0))
+        lat = safe_float(lat, (-90.0,90.0))
         if not lat:
             return {"message": "failure", "reason": "Latitude must be number between -90.0 and 90.0"}, 400
     else:
@@ -100,7 +75,7 @@ def iss_pass():
 
     lon = request.args.get('lon', False)
     if lon:
-        lon = util.safe_float(lon, (-180.0,180.0))
+        lon = safe_float(lon, (-180.0,180.0))
         if not lon:
             return {"message": "failure", "reason": "Longitue must be number between -180.0 and 180.0"}, 400
     else:
@@ -108,7 +83,7 @@ def iss_pass():
 
     alt = request.args.get('alt', False)
     if alt:
-        alt = util.safe_float(alt, (0,10000))
+        alt = safe_float(alt, (0,10000))
         if not alt:
             return {"message": "failure", "reason": "Altitude must be number between 0 and 10,000"}, 400
     else:
@@ -116,7 +91,7 @@ def iss_pass():
 
     n = request.args.get('n', False)
     if n:
-        n = util.safe_float(n, (1,100))
+        n = safe_float(n, (1,100))
         if not n:
             return {"message": "failure", "reason": "Number of passes must be number between 1 and 100"}, 400
     else:
