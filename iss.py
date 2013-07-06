@@ -42,7 +42,7 @@ def get_passes(lon, lat, alt, n):
 
     # Override refration calculation
     location.pressure   = 0
-    location.horizon    = '5:00'
+    location.horizon    = '10:00'
 
     # Set time now
     now                 = datetime.datetime.utcnow()
@@ -51,15 +51,16 @@ def get_passes(lon, lat, alt, n):
     # Predict passes
     passes = []
     for p in xrange(n):
-	    tr, azr, tt, altt, ts, azs = location.next_pass(iss)
-	    duration = int((ts - tr) *60*60*24)
-	    year, month, day, hour, minute, second = tr.tuple()
-	    dt = datetime.datetime(year, month, day, hour, minute, int(second))
+        tr, azr, tt, altt, ts, azs = location.next_pass(iss)
+        duration = int((ts - tr) *60*60*24)
+        year, month, day, hour, minute, second = tr.tuple()
+        dt = datetime.datetime(year, month, day, hour, minute, int(second))
 
-	    passes.append({"risetime": timegm(dt.timetuple()), "duration": duration})
+        if duration > 60:
+	        passes.append({"risetime": timegm(dt.timetuple()), "duration": duration})
 
-	    # Increase the time by more than a pass and less than an orbit
-	    location.date = tr + 25*ephem.minute
+        # Increase the time by more than a pass and less than an orbit
+        location.date = tr + 25*ephem.minute
 
     # Return object
     obj = {"request": {
