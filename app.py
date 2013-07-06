@@ -63,14 +63,30 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+
+
+################################################################################
+# Current ISS Location
+################################################################################
 @app.route("/iss-now.json")
+@app.route("/iss-now/")
+@app.route("/iss-now/v1/")
 @jsonp
 @json
 def iss_now():
     loc = iss.get_location()
-    return {"message": "success", "data": loc}, 200
+    return {"message": "success",
+            "timestamp": loc['timestamp'],
+            "iss_position": loc['iss_position']}, 200
 
+
+
+################################################################################
+# ISS Pass Predictions
+################################################################################
 @app.route("/iss-pass.json")
+@app.route("/iss/")
+@app.route("/iss/v1/")
 @jsonp
 @json
 def iss_pass():
@@ -98,7 +114,7 @@ def iss_pass():
         if not alt:
             return {"message": "failure", "reason": "Altitude must be number between 0 and 10,000"}, 400
     else:
-        return {"message": "failure", "reason": "Altitude must be specified"}, 400
+        alt = 100
 
     n = request.args.get('n', False)
     if n:
@@ -110,10 +126,18 @@ def iss_pass():
 
     # Calculate data and return
     d = iss.get_passes(lon, lat, alt, int(n))
-    return {"message": "success", "data": d}, 200
+    return {"message": "success",
+            "request": d['request'],
+            "response": d['response']}, 200
 
 
+
+################################################################################
+# Current People In Space
+################################################################################
 @app.route("/astros.json")
+@app.route("/astros/")
+@app.route("/astros/v1/")
 @jsonp
 @json
 def astros():
@@ -127,5 +151,8 @@ def astros():
     ]
     return {'message': "success", 'number': len(Astros), 'people': Astros}, 200
 
+
+
 if __name__ == "__main__":
+    app.debug = True
     app.run()
