@@ -75,9 +75,7 @@ def favicon():
 @json
 def iss_now():
     loc = iss.get_location()
-    return {"message": "success",
-            "timestamp": loc['timestamp'],
-            "iss_position": loc['iss_position']}, 200
+    return dict({'message': "success"}, **loc), 200
 
 
 
@@ -126,9 +124,7 @@ def iss_pass():
 
     # Calculate data and return
     d = iss.get_passes(lon, lat, alt, int(n))
-    return {"message": "success",
-            "request": d['request'],
-            "response": d['response']}, 200
+    return dict({"message": "success"}, **d), 200
 
 
 
