@@ -8,4 +8,6 @@ title: Open Notify -- API Documentation
 
 Current APIs:
 
- - [ISS Location Now](/Open-Notify-API/ISS-Location-Now)
+ - [ISS Location Now](ISS-Location-Now)
+ - [ISS Pass Predictions](ISS-Pass-Times)
+ - [Number of People In Space](People-In-Space)

@@ -16,3 +16,6 @@ apis:
  - text: ISS Pass Times
    url: /Open-Notify-API/ISS-Pass-Times
    name: isspass
+ - text: People In Space
+   url: /Open-Notify-API/People-In-Space
+   name: astros
