@@ -10,6 +10,9 @@ navigation:
   url: /about.html
 
 apis:
+ - text: Examples
+   url: /Open-Notify-API
+   name: apis
  - text: ISS Current Location
    url: /Open-Notify-API/ISS-Location-Now
    name: issnow

@@ -6,8 +6,6 @@ title: Open Notify -- API Doc | ISS Current Location
 
 # International Space Station Current Location
 
-<http://api.open-notify.org/iss-now.json>
-
 The [International Space Station](http://en.wikipedia.org/wiki/International_Space_Station)
 is moving at close to 28,000 km/h so its location changes really fast! Where
 is it right now?

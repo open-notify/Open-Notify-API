@@ -6,7 +6,6 @@ title: Open Notify -- API Doc | ISS Pass Times
 
 # International Space Station Pass Times
 
-<http://api.open-notify.org/iss-pass.json>
 
 The international space station (ISS) is an orbital outpost circling high above
 out heads. Sometimes it’s overhead, but when? It depends on your location. Given
