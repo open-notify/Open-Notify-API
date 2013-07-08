@@ -7,6 +7,7 @@ function moveISS () {
         var lon = data['data']['iss_position']['longitude'];
 
         iss.setLatLng([lat, lon]);
+        isscirc.setLatLng([lat, lon]);
         map.panTo([lat, lon], animate=true);
     });
     setTimeout(moveISS, 5000); 
@@ -29,6 +30,7 @@ var ISSIcon = L.icon({
 });
 
 
-var iss = L.marker([0, 0], {icon: ISSIcon}).addTo(map)
+var iss = L.marker([0, 0], {icon: ISSIcon}).addTo(map);
+var isscirc = L.circle([0,0], 2200e3, {color: "#c22", opacity: 0.3, weight:1, fillColor: "#c22", fillOpacity: 0.1}).addTo(map); 
 
 moveISS();
