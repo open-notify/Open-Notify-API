@@ -12,11 +12,23 @@ function moveISS () {
     setTimeout(moveISS, 5000); 
 }
 
-L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+// /Open-Notify-API/map/tiles/4/14/13.png
+//L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+L.tileLayer('/Open-Notify-API/map/tiles/{z}/{x}/{y}.png', {
+    maxZoom: 4,
 }).addTo(map);
 
-var iss = L.marker([0, 0]).addTo(map)
+var ISSIcon = L.icon({
+    iconUrl: '/Open-Notify-API/map/ISSIcon.png',
+    iconSize: [50, 30],
+    iconAnchor: [25, 15],
+    popupAnchor: [50, 25],
+    shadowUrl: '/Open-Notify-API/map/ISSIcon_shadow.png',
+    shadowSize: [60, 40],
+    shadowAnchor: [30, 15]
+});
+
+
+var iss = L.marker([0, 0], {icon: ISSIcon}).addTo(map)
 
 moveISS();
