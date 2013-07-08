@@ -14,9 +14,25 @@ is it right now?
 
 **Documentation: [ISS Location Now](ISS-Location-Now)**
 
-### Example
+### Example:
 
 {% include iss-now_map.html %}
+
+Using leaflet and jquery one can write a script to show the current location of
+the ISS and update it every 5 seconds:
+
+{% highlight javascript %}
+function moveISS () {
+    $.getJSON('http://api.open-notify.org/iss-now.json?callback=?', function(data) {
+        var lat = data['iss_position']['latitude'];
+        var lon = data['iss_position']['longitude'];
+
+        iss.setLatLng([lat, lon]);
+        map.panTo([lat, lon], animate=true);
+    });
+    setTimeout(moveISS, 5000);
+}
+{% endhighlight %}
 
 
 ## ISS Pass Times
