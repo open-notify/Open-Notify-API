@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import jsonify, request
+from flask import jsonify, request, current_app
 
 def safe_float(s, range, default=False):
     try:
