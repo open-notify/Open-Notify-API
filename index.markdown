@@ -28,9 +28,10 @@ function moveISS () {
         var lon = data['iss_position']['longitude'];
 
         iss.setLatLng([lat, lon]);
+        isscirc.setLatLng([lat, lon]);
         map.panTo([lat, lon], animate=true);
     });
-    setTimeout(moveISS, 5000);
+    setTimeout(moveISS, 5000); 
 }
 {% endhighlight %}
 

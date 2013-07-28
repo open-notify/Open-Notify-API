@@ -2,9 +2,9 @@ var map = L.map('map').setView([0,0], 2);
 
 
 function moveISS () {
-    $.getJSON('http://open-notify-api.herokuapp.com/iss-now.json?callback=?', function(data) {
-        var lat = data['data']['iss_position']['latitude'];
-        var lon = data['data']['iss_position']['longitude'];
+    $.getJSON('http://api.open-notify.org/iss-now.json?callback=?', function(data) {
+        var lat = data['iss_position']['latitude'];
+        var lon = data['iss_position']['longitude'];
 
         iss.setLatLng([lat, lon]);
         isscirc.setLatLng([lat, lon]);
