@@ -13,8 +13,6 @@ function moveISS () {
     setTimeout(moveISS, 5000); 
 }
 
-// /Open-Notify-API/map/tiles/4/14/13.png
-//L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
 L.tileLayer('/Open-Notify-API/map/tiles/{z}/{x}/{y}.png', {
     maxZoom: 4,
 }).addTo(map);
