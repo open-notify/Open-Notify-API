@@ -1,3 +1,5 @@
+pygments: true
+
 navigation:
 - text: Home
   url: /
@@ -12,7 +14,7 @@ navigation:
 apis:
  - text: Examples
    url: /Open-Notify-API
-   name: apis
+   name: apidoc
  - text: ISS Current Location
    url: /Open-Notify-API/ISS-Location-Now
    name: issnow
