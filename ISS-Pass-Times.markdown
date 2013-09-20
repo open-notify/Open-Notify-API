@@ -70,7 +70,13 @@ This API has 2 required input values and 2 optional ones.
       <td><code>0..10000</code></td>
       <td><span class="label">No</span></td>
     </tr>
-
+    <tr>
+      <td>Number</td>
+      <td>The number of passes to return</td>
+      <td><code>n</code></td>
+      <td><code>1..100</code></td>
+      <td><span class="label">No</span></td>
+    </tr>
   </tbody>
 </table>
 
