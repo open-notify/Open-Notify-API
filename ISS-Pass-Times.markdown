@@ -63,6 +63,14 @@ This API has 2 required input values and 2 optional ones.
       <td><code>-180..180</code></td>
       <td><span class="label label-important">YES</span></td>
     </tr>
+    <tr>
+      <td>Altitude</td>
+      <td>The altitude of the place to predict passes</td>
+      <td><code>alt</code></td>
+      <td><code>0..10000</code></td>
+      <td><span class="label">No</span></td>
+    </tr>
+
   </tbody>
 </table>
 
