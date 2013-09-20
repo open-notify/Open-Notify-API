@@ -38,47 +38,14 @@ pass has a duration in seconds and a rise time as a unix time stamp.
 
 This API has 2 required input values and 2 optional ones.
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Inptut</th>
-      <th>Description</th>
-      <th>Query string</th>
-      <th>Valid Range</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Latitude</td>
-      <td>The latitude of the place to predict passes</td>
-      <td><code>lat</code></td>
-      <td><code>-80..80</code></td>
-      <td><span class="label label-important">YES</span></td>
-    </tr>
-    <tr>
-      <td>Longitude</td>
-      <td>The longitude of the place to predict passes</td>
-      <td><code>lon</code></td>
-      <td><code>-180..180</code></td>
-      <td><span class="label label-important">YES</span></td>
-    </tr>
-    <tr>
-      <td>Altitude</td>
-      <td>The altitude of the place to predict passes</td>
-      <td><code>alt</code></td>
-      <td><code>0..10000</code></td>
-      <td><span class="label">No</span></td>
-    </tr>
-    <tr>
-      <td>Number</td>
-      <td>The number of passes to return</td>
-      <td><code>n</code></td>
-      <td><code>1..100</code></td>
-      <td><span class="label">No</span></td>
-    </tr>
-  </tbody>
-</table>
+{: .table .table-hover}
+  Inptut    |              Description                     | Query string | Valid Range |  Units  | Required?
+ ---------- | -------------------------------------------- | ------------ | ----------- | ------- | ---------
+_Latitude_  | The latitude of the place to predict passes  | `lat`        | `-80..80`   | degrees | <span class="label label-important">YES</span>
+_Longitude_ | The longitude of the place to predict passes | `lon`        | `-180..180` | degrees | <span class="label label-important">YES</span>
+_Altitude_  | The alitude of the place to predict passes   | `alt`        | `0..10,000` | meters  | <span class="label">No</span>
+_Number_    | The number of passes to return               | `n`          | `1..100`    | &ndash; | <span class="label">No</span>
+
 
 ## Output
 
