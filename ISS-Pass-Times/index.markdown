@@ -12,8 +12,9 @@ out heads. Sometimes it’s overhead, but when? It depends on your location. Giv
 a location on Earth (latitude, longitude, and altitude) this API will compute
 the next n number of times that the ISS will be overhead.
 
-Overhead is defined as 10&deg; in elevation for the observer. The times are computed
-in UTC and the length of time that the ISS is above 10° is in seconds.
+Overhead is defined as 10&deg; in elevation for the observer. The times are
+computed in UTC and the length of time that the ISS is above 10&deg; is in
+seconds.
 
 This gives you enough information to compute pass times for up to several
 weeks, but beware! times are less and less accurate as you go into the future.
@@ -24,8 +25,8 @@ for docking, re-boost, and debris avoidance.
 
 ## Overview
 
-The API returns a list of upcoming ISS passes for a particular location formatted
-as JSON.
+The API returns a list of upcoming ISS passes for a particular location
+formatted as JSON.
 
 As input it expects a latitude/longitude pair, altitude and how many results to
 return. All fields are required.
@@ -43,7 +44,7 @@ This API has 2 required input values and 2 optional ones.
  ---------- | -------------------------------------------- | ------------ | ----------- | ------- | ---------
 _Latitude_  | The latitude of the place to predict passes  | `lat`        | `-80..80`   | degrees | <span class="label label-important">YES</span>
 _Longitude_ | The longitude of the place to predict passes | `lon`        | `-180..180` | degrees | <span class="label label-important">YES</span>
-_Altitude_  | The alitude of the place to predict passes   | `alt`        | `0..10,000` | meters  | <span class="label">No</span>
+_Altitude_  | The altitude of the place to predict passes  | `alt`        | `0..10,000` | meters  | <span class="label">No</span>
 _Number_    | The number of passes to return               | `n`          | `1..100`    | &ndash; | <span class="label">No</span>
 
 
@@ -96,7 +97,7 @@ CALLBACK({
 
 The values used to calculate the upcoming passes are returned in
 the `request` object. The `response` is a list of the timestamp
-or each pass along with the `durateion` in seconds.
+or each pass along with the `duration` in seconds.
 
 
 
