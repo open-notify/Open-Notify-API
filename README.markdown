@@ -24,18 +24,18 @@ Start virtual environment
 
     $ workon opennotify
 
-Start flask server
+Run with [foreman](https://github.com/ddollar/foreman) using dev procfile:
 
-    (opennotify)$ python app.py
+    (opennotify)$ foreman start -f Procfile.dev
 
-Go to [localhost:5000](http://localhost:5000)
+Go to [localhost:5000](http://localhost:5000) and test.
 
 
 ## API Documentation
 
 Docs are in the gh-pages branch, or on the web here:
 
- - [Open Notify API Documentation](http://open-notify.github.io/Open-Notify-API/)
+ - [Open Notify API Documentation](http://open-notify.org/Open-Notify-API/)
 
 
 ## License
