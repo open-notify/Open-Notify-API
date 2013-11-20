@@ -6,6 +6,6 @@ services:
   - redis-server
 
 install:
-  - pip install -r requirements.txt
+  - pip install -r testsuite/requirements.txt
 
-script: true
+script: run_tests.py

@@ -1,0 +1,2 @@
+-r ../requirements.txt
+Flask-WebTest==0.0.4
