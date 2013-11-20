@@ -8,4 +8,4 @@ services:
 install:
   - pip install -r testsuite/requirements.txt
 
-script: run_tests.py
+script: python run_tests.py
