@@ -2,7 +2,10 @@ from unittest import main, TestCase
 from flask.ext.webtest import TestApp
 from app import app
 
+
 class FrontPageTest(TestCase):
+    """Test that the front page is rendering"""
+
     def setUp(self):
         self.app = app
         self.w = TestApp(self.app)
