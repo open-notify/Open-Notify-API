@@ -27,6 +27,15 @@ class IssNowTest(TestCase):
             data = json.loads(r.text)
         except:
             self.fail("ISS API not a valid JSON responce")
-        
+
+
+        # Success message
         self.assertEqual(data['message'], "success", "ISS API Did not return 'sucess' message")
 
+        # timestamp exists
+        self.assertTrue('timestamp' in data)
+
+        # position data
+        self.assertTrue('iss_position' in data)
+        self.assertTrue('latitude' in data['iss_position'])
+        self.assertTrue('longitude' in data['iss_position'])

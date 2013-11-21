@@ -1,5 +1,7 @@
 # Open Nofity APIs
 
+[![Build Status](https://travis-ci.org/open-notify/Open-Notify-API.png)](https://travis-ci.org/open-notify/Open-Notify-API)
+
 APIs for [api.open-notify.org](http://api.open-notify.org)
 
 ## Install for the first time:
@@ -7,6 +9,8 @@ APIs for [api.open-notify.org](http://api.open-notify.org)
 Make sure you have some packages:
 
     # apt-get install python python-dev python-pip virtualenvwrapper redis-server
+
+Note: if you're installing `virtualenvwrapper` for the first time, be sure to log out and back in before continuing.
 
 Create a virtual environment
 
@@ -28,7 +32,15 @@ Run with [foreman](https://github.com/ddollar/foreman) using dev procfile:
 
     (opennotify)$ foreman start -f Procfile.dev
 
-Go to [localhost:5000](http://localhost:5000) and test.
+Open a browser to [localhost:5000](http://localhost:5000).
+
+
+## Run Testsuite
+
+    (opennotify)$ cd testsuite
+    (opennotify)$ pip install -r requirements.txt
+    (opennotify)$ cd ..
+    (opennotify)$ ./run_tests.py
 
 
 ## API Documentation
