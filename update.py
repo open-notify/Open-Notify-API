@@ -2,6 +2,7 @@ import redis
 import json 
 import urllib2
 import datetime
+from calendar import timegm
 import time
 import os
 import sys
@@ -35,6 +36,9 @@ def update_tle():
         # change into more useful datetime object
         dt = datetime.datetime(tm[0], tm[1], tm[2], tm[3], tm[4], tm[5])
 
+        # Debug
+        #print dt
+
         # More parsing
         tle = group.split("TWO LINE MEAN ELEMENT SET")[1]
         tle = tle[8:160]
@@ -42,6 +46,7 @@ def update_tle():
 
         # Most recent TLE
         now = datetime.datetime.utcnow()
+
         if (dt - now).days >= 0:
             # Debug Printing
             """
@@ -56,6 +61,9 @@ def update_tle():
                              , lines[2].strip()])
 
             r.set("iss_tle", tle)
+            r.set("iss_tle_time", timegm(dt.timetuple()))
+            r.set("iss_tle_last_update", timegm(now.timetuple()))
+            break
 
 
 if __name__ == '__main__':

@@ -53,6 +53,18 @@ def iss_now():
     return dict({'message': "success"}, **loc), 200
 
 
+################################################################################
+# ISS Orbit Debug
+################################################################################
+@app.route("/iss-tle-info.json")
+@jsonp
+@json
+def tle_info():
+    info = {'tle': iss.get_tle()}
+    info['tle-time'] = iss.get_tle_time()
+    info['tle-update'] = iss.get_tle_update()
+    return dict({'message': "success"}, **info), 200
+
 
 ################################################################################
 # ISS Pass Predictions

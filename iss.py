@@ -27,6 +27,18 @@ def get_location():
     return {"timestamp": timegm(now.timetuple()), "iss_position": {"latitude": lat, "longitude": lon} }
 
 
+def get_tle():
+    """Grab the current TLE"""
+    return json.loads(r.get("iss_tle"))
+
+def get_tle_time():
+    """Grab the current TLE time"""
+    return r.get("iss_tle_time")
+
+def get_tle_update():
+    """Grab the tle update time"""
+    return r.get("iss_tle_last_update")
+
 def get_passes(lon, lat, alt, n):
     """Compute n number of passes of the ISS for a location"""
 
