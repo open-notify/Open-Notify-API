@@ -4,7 +4,7 @@ from calendar import timegm
 from math import degrees
 import redis
 import json
-import os 
+import os
 
 REDIS_URL = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
 r = redis.StrictRedis.from_url(REDIS_URL)
@@ -24,20 +24,23 @@ def get_location():
     lat = degrees(iss.sublat)
 
     # Return the relevant timestamp and data
-    return {"timestamp": timegm(now.timetuple()), "iss_position": {"latitude": lat, "longitude": lon} }
+    return {"timestamp": timegm(now.timetuple()), "iss_position": {"latitude": lat, "longitude": lon}}
 
 
 def get_tle():
     """Grab the current TLE"""
     return json.loads(r.get("iss_tle"))
 
+
 def get_tle_time():
     """Grab the current TLE time"""
     return r.get("iss_tle_time")
 
+
 def get_tle_update():
     """Grab the tle update time"""
     return r.get("iss_tle_last_update")
+
 
 def get_passes(lon, lat, alt, n):
     """Compute n number of passes of the ISS for a location"""
@@ -48,41 +51,41 @@ def get_passes(lon, lat, alt, n):
 
     # Set location
     location = ephem.Observer()
-    location.lat        = str(lat)
-    location.long       = str(lon)
-    location.elevation  = alt
+    location.lat = str(lat)
+    location.long = str(lon)
+    location.elevation = alt
 
     # Override refration calculation
-    location.pressure   = 0
-    location.horizon    = '10:00'
+    location.pressure = 0
+    location.horizon = '10:00'
 
     # Set time now
-    now                 = datetime.datetime.utcnow()
-    location.date       = now
+    now = datetime.datetime.utcnow()
+    location.date = now
 
     # Predict passes
     passes = []
     for p in xrange(n):
         tr, azr, tt, altt, ts, azs = location.next_pass(iss)
-        duration = int((ts - tr) *60*60*24)
+        duration = int((ts - tr) * 60 * 60 * 24)
         year, month, day, hour, minute, second = tr.tuple()
         dt = datetime.datetime(year, month, day, hour, minute, int(second))
 
         if duration > 60:
-	        passes.append({"risetime": timegm(dt.timetuple()), "duration": duration})
+            passes.append({"risetime": timegm(dt.timetuple()), "duration": duration})
 
         # Increase the time by more than a pass and less than an orbit
         location.date = tr + 25*ephem.minute
 
     # Return object
     obj = {"request": {
-                        "datetime": timegm(now.timetuple()),
-                        "latitude": lat,
-                        "longitude": lon,
-                        "altitude": alt,
-                        "passes": n,
-                      },
-            "response": passes,
-          }
+        "datetime": timegm(now.timetuple()),
+        "latitude": lat,
+        "longitude": lon,
+        "altitude": alt,
+        "passes": n,
+        },
+        "response": passes,
+    }
 
     return obj

@@ -1,6 +1,7 @@
 from functools import wraps
 from flask import jsonify, request, current_app
 
+
 def safe_float(s, range, default=False):
     try:
         f = float(s)
@@ -23,6 +24,7 @@ def json(func):
         return jsonify(func(*args, **kwargs)[0]), func(*args, **kwargs)[1]
     return decorated_function
 
+
 # from farazdagi on github
 #   https://gist.github.com/1089923
 def jsonp(func):
@@ -38,4 +40,3 @@ def jsonp(func):
         else:
             return func(*args, **kwargs)
     return decorated_function
-

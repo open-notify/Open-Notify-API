@@ -1,5 +1,5 @@
 import redis
-import json 
+import json
 import urllib2
 import datetime
 from calendar import timegm
@@ -10,7 +10,7 @@ import sys
 REDIS_URL = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
 r = redis.StrictRedis.from_url(REDIS_URL)
 
-# NASA's station FDO updates this page with very precise data. Only using a 
+# NASA's station FDO updates this page with very precise data. Only using a
 # small bit of it for now.
 url = "http://spaceflight.nasa.gov/realdata/sightings/SSapplications/Post/JavaSSOP/orbit/ISS/SVPOST.html"
 
@@ -56,9 +56,7 @@ def update_tle():
             print "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
             """
 
-            tle = json.dumps( [lines[0].strip()
-                             , lines[1].strip()
-                             , lines[2].strip()])
+            tle = json.dumps([lines[0].strip(), lines[1].strip(), lines[2].strip()])
 
             r.set("iss_tle", tle)
             r.set("iss_tle_time", timegm(dt.timetuple()))

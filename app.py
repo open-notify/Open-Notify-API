@@ -1,43 +1,42 @@
 import os
 from flask import Flask, request, render_template, send_from_directory
 import iss
-from util import *
- 
+from util import safe_float, json, jsonp
+
 app = Flask(__name__)
 
 # APIs:
-API_DEFS = [  {
-                "title": "ISS Location Now",
-                "link": "/iss-now.json",
-                "desc": "Current ISS location over Earth (latitude/longitude)",
-                "doclink": "http://open-notify.org/Open-Notify-API/ISS-Location-Now",
-                "docname": "ISS-Location-Now"
-              },
-              {
-                "title": "ISS Pass Times",
-                "link": "/iss-pass.json?lat=45.0&lon=-122.3",
-                "desc": "Predictions when the space station will fly over a particular location",
-                "doclink": "http://open-notify.org/Open-Notify-API/ISS-Pass-Times",
-                "docname": "ISS-Pass-Times"
-              },
-              {
-                "title": "People in Space Right Now",
-                "link": "/astros.json",
-                "desc": "The number of people in space at this moment. List of names when known.",
-                "doclink": "http://open-notify.org/Open-Notify-API/People-In-Space",
-                "docname": "People-In-Space"
-              },
-           ]
+API_DEFS = [
+    {
+        "title": "ISS Location Now",
+        "link": "/iss-now.json",
+        "desc": "Current ISS location over Earth (latitude/longitude)",
+        "doclink": "http://open-notify.org/Open-Notify-API/ISS-Location-Now",
+        "docname": "ISS-Location-Now"},
+    {
+        "title": "ISS Pass Times",
+        "link": "/iss-pass.json?lat=45.0&lon=-122.3",
+        "desc": "Predictions when the space station will fly over a particular location",
+        "doclink": "http://open-notify.org/Open-Notify-API/ISS-Pass-Times",
+        "docname": "ISS-Pass-Times"},
+    {
+        "title": "People in Space Right Now",
+        "link": "/astros.json",
+        "desc": "The number of people in space at this moment. List of names when known.",
+        "doclink": "http://open-notify.org/Open-Notify-API/People-In-Space",
+        "docname": "People-In-Space"},
+]
+
 
 @app.route("/")
 def index():
     return render_template('index.html', apis=API_DEFS)
 
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
-
 
 
 ################################################################################
@@ -79,7 +78,7 @@ def iss_pass():
     # Sanitize inputs
     lat = request.args.get('lat', False)
     if lat:
-        lat = safe_float(lat, (-90.0,90.0))
+        lat = safe_float(lat, (-90.0, 90.0))
         if not lat:
             return {"message": "failure", "reason": "Latitude must be number between -90.0 and 90.0"}, 400
     else:
@@ -87,7 +86,7 @@ def iss_pass():
 
     lon = request.args.get('lon', False)
     if lon:
-        lon = safe_float(lon, (-180.0,180.0))
+        lon = safe_float(lon, (-180.0, 180.0))
         if not lon:
             return {"message": "failure", "reason": "Longitue must be number between -180.0 and 180.0"}, 400
     else:
@@ -95,7 +94,7 @@ def iss_pass():
 
     alt = request.args.get('alt', False)
     if alt:
-        alt = safe_float(alt, (0,10000))
+        alt = safe_float(alt, (0, 10000))
         if not alt:
             return {"message": "failure", "reason": "Altitude must be number between 0 and 10,000"}, 400
     else:
@@ -103,7 +102,7 @@ def iss_pass():
 
     n = request.args.get('n', False)
     if n:
-        n = safe_float(n, (1,100))
+        n = safe_float(n, (1, 100))
         if not n:
             return {"message": "failure", "reason": "Number of passes must be number between 1 and 100"}, 400
     else:
@@ -112,7 +111,6 @@ def iss_pass():
     # Calculate data and return
     d = iss.get_passes(lon, lat, alt, int(n))
     return dict({"message": "success"}, **d), 200
-
 
 
 ################################################################################
@@ -124,7 +122,7 @@ def iss_pass():
 @jsonp
 @json
 def astros():
-    Astros  = [
+    Astros = [
         {'name': "Maxim Suraev",            'craft': "ISS"},
         {'name': "Reid Wiseman",            'craft': "ISS"},
         {'name': "Alexander Gerst",         'craft': "ISS"},
@@ -133,7 +131,6 @@ def astros():
         {'name': "Barry Wilmore",           'craft': "ISS"},
     ]
     return {'message': "success", 'number': len(Astros), 'people': Astros}, 200
-
 
 
 if __name__ == "__main__":
