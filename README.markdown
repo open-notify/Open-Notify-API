@@ -4,6 +4,7 @@
 
 APIs for [api.open-notify.org](http://api.open-notify.org)
 
+
 ## Install for the first time:
 
 Make sure you have some packages:
@@ -40,7 +41,7 @@ Open a browser to [localhost:5000](http://localhost:5000).
     (opennotify)$ cd testsuite
     (opennotify)$ pip install -r requirements.txt
     (opennotify)$ cd ..
-    (opennotify)$ ./run_tests.py
+    (opennotify)$ make test
 
 
 ## API Documentation
