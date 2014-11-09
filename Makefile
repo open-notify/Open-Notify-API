@@ -1,3 +1,6 @@
+test:
+	python ./run_tests.py
+
 clean:
 	find . -name "*.pyc" -type f -delete
 
