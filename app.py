@@ -123,9 +123,6 @@ def iss_pass():
 @json
 def astros():
     Astros = [
-        {'name': "Anton Schkaplerov",       'craft': "ISS"},
-        {'name': "Samantha Cristoforetti",  'craft': "ISS"},
-        {'name': "Terry Virts",             'craft': "ISS"},
         {'name': "Gennady Padalka",         'craft': "ISS"},
         {'name': "Mikhail Kornienko",       'craft': "ISS"},
         {'name': "Scott Kelly",             'craft': "ISS"},
