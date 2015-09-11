@@ -123,15 +123,12 @@ def iss_pass():
 @json
 def astros():
     Astros = [
-        {'name': "Gennady Padalka",         'craft': "ISS"},
         {'name': "Mikhail Kornienko",       'craft': "ISS"},
         {'name': "Scott Kelly",             'craft': "ISS"},
         {'name': "Oleg Kononenko",          'craft': "ISS"},
         {'name': "Kimiya Yui",              'craft': "ISS"},
         {'name': "Kjell Lindgren",          'craft': "ISS"},
         {'name': "Sergey Volkov",           'craft': "ISS"},
-        {'name': "Andreas Mogensen",        'craft': "ISS"},
-        {'name': "Aidyn Aimbetov",          'craft': "ISS"},
     ]
     return {'message': "success", 'number': len(Astros), 'people': Astros}, 200
 
