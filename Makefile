@@ -1,5 +1,6 @@
 test:
 	python ./run_tests.py
+	honcho start
 
 clean:
 	find . -name "*.pyc" -type f -delete

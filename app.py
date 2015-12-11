@@ -125,9 +125,6 @@ def astros():
     Astros = [
         {'name': "Mikhail Kornienko",       'craft': "ISS"},
         {'name': "Scott Kelly",             'craft': "ISS"},
-        {'name': "Oleg Kononenko",          'craft': "ISS"},
-        {'name': "Kimiya Yui",              'craft': "ISS"},
-        {'name': "Kjell Lindgren",          'craft': "ISS"},
         {'name': "Sergey Volkov",           'craft': "ISS"},
     ]
     return {'message': "success", 'number': len(Astros), 'people': Astros}, 200
