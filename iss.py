@@ -43,30 +43,29 @@ def get_tle_update():
 
 
 def get_passes(lon, lat, alt, n):
-    """Compute n number of passes of the ISS for a location"""
-
+    """Compute up to n number of passes of the ISS for a location"""
     # Get latest TLE from redis
     tle = json.loads(r.get("iss_tle"))
     iss = ephem.readtle(str(tle[0]), str(tle[1]), str(tle[2]))
-
     # Set location
     location = ephem.Observer()
     location.lat = str(lat)
     location.long = str(lon)
     location.elevation = alt
-
     # Override refration calculation
     location.pressure = 0
     location.horizon = '10:00'
-
     # Set time now
     now = datetime.datetime.utcnow()
     location.date = now
-
     # Predict passes
     passes = []
     for p in xrange(n):
-        tr, azr, tt, altt, ts, azs = location.next_pass(iss)
+        try:
+            tr, azr, tt, altt, ts, azs = location.next_pass(iss)
+        except ValueError as e:
+            # next_pass returns "that satellite seems to stay always below your horizon"
+            continue
         duration = int((ts - tr) * 60 * 60 * 24)
         year, month, day, hour, minute, second = tr.tuple()
         dt = datetime.datetime(year, month, day, hour, minute, int(second))
@@ -76,7 +75,6 @@ def get_passes(lon, lat, alt, n):
 
         # Increase the time by more than a pass and less than an orbit
         location.date = tr + 25*ephem.minute
-
     # Return object
     obj = {"request": {
         "datetime": timegm(now.timetuple()),
@@ -87,5 +85,4 @@ def get_passes(lon, lat, alt, n):
         },
         "response": passes,
     }
-
     return obj
