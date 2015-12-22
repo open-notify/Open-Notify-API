@@ -65,7 +65,7 @@ def get_passes(lon, lat, alt, n):
             tr, azr, tt, altt, ts, azs = location.next_pass(iss)
         except ValueError as e:
             # next_pass returns "that satellite seems to stay always below your horizon"
-            continue
+            break
         duration = int((ts - tr) * 60 * 60 * 24)
         year, month, day, hour, minute, second = tr.tuple()
         dt = datetime.datetime(year, month, day, hour, minute, int(second))
