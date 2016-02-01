@@ -48,6 +48,38 @@ def favicon():
 @jsonp
 @json
 def iss_now():
+    """The International Space Station (ISS) is moving at close to 28,000 km/h so its
+    location changes really fast! Where is it right now?
+
+    This is a simple api to return the current location above the Earth of the ISS.
+    It returns the current latitude and longitude of the space station with a unix
+    timestamp for the time the location was valid. This API takes no inputs.
+
+    :status 200: when successful
+
+    :>json str message: Operation status.
+    :>json int timestamp: Unix timestamp for this location.
+    :>json obj iss_position: Position on Earth directly below the ISS.
+    :>json int iss_position.latitude: Latitude
+    :>json int iss_position.longitude: Longitude
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 200 OK
+        Content-Type: application/json
+        
+        {
+          "iss_position": {
+            "latitude": -19.783929798887073,
+            "longitude": -72.29753187401747
+          },
+          "message": "success",
+          "timestamp": 1454357342
+        }
+
+    """
     loc = iss.get_location()
     return dict({'message': "success"}, **loc), 200
 
