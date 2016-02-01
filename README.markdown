@@ -1,6 +1,8 @@
 # Open Nofity APIs
 
-[![Build Status](https://travis-ci.org/open-notify/Open-Notify-API.png)](https://travis-ci.org/open-notify/Open-Notify-API)
+![](https://img.shields.io/badge/language-python%202-green.svg)
+[![Build Status](https://travis-ci.org/open-notify/Open-Notify-API.svg)](https://travis-ci.org/open-notify/Open-Notify-API)
+[![Requirements Status](https://requires.io/github/open-notify/Open-Notify-API/requirements.svg?branch=master)](https://requires.io/github/open-notify/Open-Notify-API/requirements/?branch=master)
 
 APIs for [api.open-notify.org](http://api.open-notify.org)
 
@@ -53,7 +55,7 @@ Docs are in the gh-pages branch, or on the web here:
 
 ## License
 
-Copyright (C) 2013 Nathan Bergey
+Copyright (C) 2016 Nathan Bergey
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
