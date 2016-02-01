@@ -3,6 +3,8 @@
 ![](https://img.shields.io/badge/language-python%202-green.svg)
 [![Build Status](https://travis-ci.org/open-notify/Open-Notify-API.svg)](https://travis-ci.org/open-notify/Open-Notify-API)
 [![Requirements Status](https://requires.io/github/open-notify/Open-Notify-API/requirements.svg?branch=master)](https://requires.io/github/open-notify/Open-Notify-API/requirements/?branch=master)
+[![Docs](https://readthedocs.org/projects/open-notify-api/badge/?version=latest)](http://open-notify-api.readthedocs.org/)
+
 
 APIs for [api.open-notify.org](http://api.open-notify.org)
 
