@@ -106,6 +106,80 @@ def tle_info():
 @jsonp
 @json
 def iss_pass():
+    """The international space station (ISS) is an orbital outpost circling
+    high above out heads. Sometimes it's overhead, but when? It depends on your
+    location. Given a location on Earth (latitude, longitude, and altitude)
+    this API will compute the next n number of times that the ISS will be
+    overhead.
+
+    Overhead is defined as 10 degrees in elevation for the observer. The times
+    are computed in UTC and the length of time that the ISS is above 10 degrees
+    is in seconds.
+
+    This gives you enough information to compute pass times for up to several
+    weeks, but beware! times are less and less accurate as you go into the future.
+    This is because the orbit of the ISS decays unpredictably over time and because
+    station controllers periodically move the station to higher and lower orbits
+    for docking, re-boost, and debris avoidance.
+
+    **Overview**
+
+    The API returns a list of upcoming ISS passes for a particular location
+    formatted as JSON.
+
+    As input it expects a latitude/longitude pair, altitude and how many results
+    to return. All fields are required.
+
+    As output you get the same inputs back (for checking) and a time stamp when
+    the API ran in addition to a success or failure message and a list of passes.
+    Each pass has a duration in seconds and a rise time as a unix time stamp.
+
+    :status 200: when successful
+    :status 400: if one or more inputs is out of range or invalid
+
+    :query lat: latitude in decimal degrees of the ground station. **required** Range: -90, 90
+    :query lon: longitude in decimal degress of the ground station. **required** Range: -180, 180
+    :query alt: altitude in meters of the gronud station. optional. Range: 0, 10,000
+    :query n: requested number of predictions. default: 5. May return less than requested
+
+    :>json str message: Operation status.
+    :>json obj request: Parameters used in prediction
+    :>json list response: List of predicted passes
+
+    **Example Request**:
+
+    .. sourcecode:: http
+
+        GET /iss/v1/?lat=40.027435&lon=-105.251945&alt=1650&n=1 HTTP/1.1
+        Host: api.open-notify.org
+        Accept: application/json, text/javascript
+
+
+    **Example Response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 200 OK
+        Content-Type: application/json
+
+        {
+          "message": "success",
+          "request": {
+            "altitude": 1650.0,
+            "datetime": 1454475126,
+            "latitude": 40.027435,
+            "longitude": -105.251945,
+            "passes": 1
+          },
+          "response": [
+            {
+              "duration": 525,
+              "risetime": 1454475538
+            }
+          ]
+        }
+
+    """
 
     # Sanitize inputs
     lat = request.args.get('lat', False)

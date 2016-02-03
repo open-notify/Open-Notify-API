@@ -4,6 +4,7 @@
        :maxdepth: 2
 
        iss_location
+       iss_pass
 
 
 Open APIs From Space
@@ -17,3 +18,4 @@ APIs:
 -----
 
  - :doc:`iss_location`
+ - :doc:`iss_pass`
