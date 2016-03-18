@@ -232,6 +232,9 @@ def astros():
         {'name': "Yuri Malenchenko",        'craft': "ISS"},
         {'name': "Timothy Kopra",           'craft': "ISS"},
         {'name': "Timothy Peake",           'craft': "ISS"},
+        {'name': "Alexey Ovchinin",         'craft': "ISS"},
+        {'name': "Oleg Skripochka",         'craft': "ISS"},
+        {'name': "Jeff Williams",           'craft': "ISS"},
     ]
     return {'message': "success", 'number': len(Astros), 'people': Astros}, 200
 
