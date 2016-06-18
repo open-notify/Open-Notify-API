@@ -1,11 +1,10 @@
-setuptools
-Flask==0.10.1
+click==6.6
+Flask==0.11.1
+gunicorn==19.6.0
+itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
-Werkzeug==0.11.3
-gunicorn==19.4.5
-itsdangerous==0.24
-newrelic==2.60.0.46
+newrelic==2.66.0.49
 pyephem==3.7.6.0
 redis==2.10.5
-wsgiref==0.1.2
+Werkzeug==0.11.10
