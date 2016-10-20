@@ -234,6 +234,10 @@ def astros():
         {'name': "Kate Rubins",             'craft': "ISS"},
         {'name': "Jing Haipeng",            'craft': "Shenzhou 11"},
         {'name': "Chen Dong",               'craft': "Shenzhou 11"},
+        {'name': "Sergey Rizhikov",         'craft': "ISS"},
+        {'name': "Andrey Borisenko",        'craft': "ISS"},
+        {'name': "Shane Kimbrough",         'craft': "ISS"},
+
     ]
     return {'message': "success", 'number': len(Astros), 'people': Astros}, 200
 
