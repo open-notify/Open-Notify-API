@@ -27,8 +27,8 @@ API_DEFS = [
         "docname": "People-In-Space"},
 ]
 
-
 @app.route("/")
+
 def index():
     return render_template('index.html', apis=API_DEFS)
 
@@ -229,15 +229,11 @@ def iss_pass():
 @json
 def astros():
     Astros = [
-        {'name': "Anatoly Ivanishin",       'craft': "ISS"},
-        {'name': "Takuya Onishi",           'craft': "ISS"},
-        {'name': "Kate Rubins",             'craft': "ISS"},
         {'name': "Jing Haipeng",            'craft': "Shenzhou 11"},
         {'name': "Chen Dong",               'craft': "Shenzhou 11"},
         {'name': "Sergey Rizhikov",         'craft': "ISS"},
         {'name': "Andrey Borisenko",        'craft': "ISS"},
         {'name': "Shane Kimbrough",         'craft': "ISS"},
-
     ]
     return {'message': "success", 'number': len(Astros), 'people': Astros}, 200
 
