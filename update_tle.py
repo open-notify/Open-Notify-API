@@ -35,7 +35,7 @@ def update_tle():
         dt = datetime.datetime(tm[0], tm[1], tm[2], tm[3], tm[4], tm[5])
 
         # Debug
-        #print dt
+        # print dt
 
         # More parsing
         tle = group.split("TWO LINE MEAN ELEMENT SET")[1]

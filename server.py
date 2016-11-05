@@ -47,7 +47,7 @@ class OpenNotify():
             response.status = HTTP_503
             data = ERROR_MISSING
         else:
-            data = json_string
+            data = json_string.decode(encoding="utf-8")
             response.status = HTTP_200
 
         # Look for JSONP request, and wrap reply
