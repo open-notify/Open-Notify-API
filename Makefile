@@ -1,10 +1,12 @@
+FLAKEIGNORE=E501,E241
+
 all: local
 
 lint:
-	flake8 server.py
-	flake8 update_tle.py
-	flake8 update_iss_position.py
-	flake8 update_astros.py
+	flake8 --ignore $(FLAKEIGNORE) server.py
+	flake8 --ignore $(FLAKEIGNORE) update_tle.py
+	flake8 --ignore $(FLAKEIGNORE) update_iss_position.py
+	flake8 --ignore $(FLAKEIGNORE) update_astros.py
 
 runenv: requirements.txt
 	virtualenv --python=`which python3.4` ./runenv
