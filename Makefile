@@ -1,12 +1,12 @@
-test:
-	python ./run_tests.py
-	honcho start
+all: local
 
-clean:
-	find . -name "*.pyc" -type f -delete
+runenv: requirements.txt
+	virtualenv --python=`which python3.4` ./runenv
+	./runenv/bin/pip install -r requirements.txt
+	touch runenv
 
-lint:
-	flake8 app.py
-	flake8 iss.py
-	flake8 update.py
-	flake8 util.py
+run: runenv
+	./runenv/bin/uwsgi --ini production.ini
+
+local: runenv
+	./runenv/bin/uwsgi --ini testing.ini
