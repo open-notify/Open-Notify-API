@@ -16,3 +16,12 @@ run: runenv
 
 local: runenv
 	./runenv/bin/uwsgi --ini testing.ini
+
+update_tle: runenv
+	./runenv/bin/python update_tle.py
+
+update_iss: runenv
+	./runenv/bin/python update_iss_position.py
+
+update_astros: runenv
+	./runenv/bin/python update_astros.py
