@@ -1,0 +1,19 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+
+    - name: Copy Source
+      copy: src={{ item }} dest=/opt/open-notify/ owner=deploy group=deploy mode=0644
+      with_items:
+        - Makefile
+        - requirements.txt
+        - production.ini
+        - server.py
+        - testing.ini
+        - tox.ini
+        - update_astros.py
+        - update_iss_position.py
+        - update_pass_times.py
+        - update_tle.py
+        - static

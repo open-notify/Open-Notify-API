@@ -18,7 +18,7 @@ def get_iss_location():
     """
 
     # Load the TLE from redis
-    tle = json.loads(redis.get("iss_tle").decode())
+    tle = json.loads(redis.get("iss-tle").decode())
     iss = ephem.readtle(str(tle[0]), str(tle[1]), str(tle[2]))
 
     # Compute "now" with pyephem
