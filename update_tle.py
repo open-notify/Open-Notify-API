@@ -1,25 +1,23 @@
-import redis
+from __future__ import print_function
+import requests
 import json
-import urllib2
 import datetime
 from calendar import timegm
 import time
-import os
+from redis import StrictRedis
 import sys
 
-REDIS_URL = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
-r = redis.StrictRedis.from_url(REDIS_URL)
+redis = StrictRedis(host='localhost', port=6379)
 
 # NASA's station FDO updates this page with very precise data. Only using a
 # small bit of it for now.
-url = "http://spaceflight.nasa.gov/realdata/sightings/SSapplications/Post/JavaSSOP/orbit/ISS/SVPOST.html"
+DATA_URL = "http://spaceflight.nasa.gov/realdata/sightings/SSapplications/Post/JavaSSOP/orbit/ISS/SVPOST.html"
 
 
 def update_tle():
     # Open a http request
-    req = urllib2.Request(url)
-    response = urllib2.urlopen(req)
-    data = response.read()
+    req = requests.get(DATA_URL)
+    data = req.text
 
     # parse the HTML
     data = data.split("<PRE>")[1]
@@ -58,16 +56,17 @@ def update_tle():
 
             tle = json.dumps([lines[0].strip(), lines[1].strip(), lines[2].strip()])
 
-            r.set("iss_tle", tle)
-            r.set("iss_tle_time", timegm(dt.timetuple()))
-            r.set("iss_tle_last_update", timegm(now.timetuple()))
+            redis.set("iss-tle", tle)
+            redis.set("iss-tle-time", timegm(dt.timetuple()))
+            redis.set("iss-tle-last-update", timegm(now.timetuple()))
             break
 
 
 if __name__ == '__main__':
-    print "Updating ISS TLE from JSC..."
+    print("Updating ISS TLE from JSC...")
     try:
         update_tle()
+        print("Success!")
     except:
         exctype, value = sys.exc_info()[:2]
-        print "Error:", exctype, value
+        print("Error:", exctype, value)
