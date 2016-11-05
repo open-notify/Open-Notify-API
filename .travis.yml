@@ -11,6 +11,7 @@ services:
 
 install:
   - pip install tox
+  - pip install flake8
 
 script:
  - tox
