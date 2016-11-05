@@ -54,11 +54,20 @@ def update_tle():
             print "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
             """
 
-            tle = json.dumps([lines[0].strip(), lines[1].strip(), lines[2].strip()])
+            # Get the TLE as a list: line 0, 1, 2
+            tle = [lines[0].strip(), lines[1].strip(), lines[2].strip()]
 
-            redis.set("iss-tle", tle)
-            redis.set("iss-tle-time", timegm(dt.timetuple()))
-            redis.set("iss-tle-last-update", timegm(now.timetuple()))
+            # Put in Redis
+            redis.set("iss-tle", json.dumps(tle))
+
+            # Set debug info
+            info = {
+                "message": "success",
+                "tle": tle,
+                "tle-time": timegm(dt.timetuple()),
+                "tle-update": timegm(now.timetuple()),
+            }
+            redis.set('iss-tle-info', json.dumps(info))
             break
 
 
