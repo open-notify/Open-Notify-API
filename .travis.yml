@@ -1,13 +1,17 @@
 language: python
 python:
   - "2.7"
+  - "3.2"
+  - "3.4"
+  - "3.5"
+  - "pypy"
 
 services:
   - redis-server
 
 install:
-  - pip install -r testsuite/requirements.txt
+  - pip install tox
 
-before_script: python update.py
-
-script: python run_tests.py
+script:
+ - tox
+ - make lint
