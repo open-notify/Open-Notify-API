@@ -1,4 +1,7 @@
-pygments: true
+markdown: kramdown
+kramdown:
+  toc_levels: "2,3"
+highlighter: rouge
 
 navigation:
 - text: Home
