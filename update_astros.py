@@ -12,6 +12,9 @@ astros = [
     {'name': "Sergey Rizhikov",         'craft': "ISS"},
     {'name': "Andrey Borisenko",        'craft': "ISS"},
     {'name': "Shane Kimbrough",         'craft': "ISS"},
+    {'name': "Oleg Novitskiy",          'craft': "ISS"},
+    {'name': "Thomas Pesquet",          'craft': "ISS"},
+    {'name': "Peggy Whitson",           'craft': "ISS"},
 ]
 
 redis.set('people-in-space', json.dumps({'message': "success", 'number': len(astros), 'people': astros}))
