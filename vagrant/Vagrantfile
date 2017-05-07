@@ -1,0 +1,40 @@
+VAGRANTFILE_API_VERSION = "2"
+
+require_relative 'settings'
+
+Vagrant.configure("2") do |config|
+
+  # Base image: Debian stable (Jessie, 8)
+  config.vm.box = "debian/jessie64"
+
+  # We're going to Bridge the network
+  config.vm.network :public_network, :use_dhcp_assigned_default_route => true
+
+  # Edit the settings to set the desired forwarded ports
+  PORTS.each do |host_port, guest_port|
+    config.vm.network :forwarded_port, guest: guest_port, host: host_port
+  end
+
+  # Edit the settings to set the desired memory and CPU settings
+  config.vm.provider :virtualbox do |vb|
+    ary = ["modifyvm", :id,
+           "--memory", MEMORY,
+           "--cpus", CORES
+          ]
+    vb.customize ary
+    vb.customize ['modifyvm', :id, '--natnet1', '192.168.200.0/24']
+  end
+
+  # Define name for this vm.
+  config.vm.define "opennotifyapitesting"
+  config.vm.hostname = HOSTNAME
+  config.vm.provision "ansible", type: "ansible" do |ansible|
+    ansible.groups = {
+        "api" => ["opennotifyapitesting"],
+        "testing" => ["opennotifyapitesting"],
+        "local" => ["opennotifyapitesting"],
+    }
+    ansible.playbook = "./ansible/api.yml"
+  end
+
+end
