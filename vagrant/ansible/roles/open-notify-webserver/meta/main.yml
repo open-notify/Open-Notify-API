@@ -1,0 +1,61 @@
+---
+dependencies:
+  - role: nginx
+
+    nginx_http_params:
+        - sendfile on
+        - tcp_nopush on
+        - tcp_nodelay on
+        - gzip on
+        - server_tokens off
+        - index index.html
+        - log_format apilog '$msec | $remote_addr $status $request_time $upstream_response_time $upstream_cache_status $body_bytes_sent |  "$request" "$http_user_agent"'
+
+    nginx_events_params:
+        - worker_connections 16348
+        - use epoll
+        - multi_accept on
+
+    nginx_sites:
+
+      default:
+        - listen 80 default_server
+        - server_name _
+        - return 444
+      defaulthttps:
+        - listen 443 default_server
+        - server_name _
+        - return 444
+
+      # Enable monitoring
+      datadogmonitor:
+        - listen 9841
+        - server_name localhost
+        - location / {
+            stub_status on;
+            access_log off;
+            allow 127.0.0.1;
+            deny all;
+          }
+
+      # The API
+      api:
+        - listen 80
+        - server_name *.open-notify.org
+        - access_log /var/log/nginx/iss.access.log apilog
+        - root /opt/web/static/
+        - add_header 'Access-Control-Allow-Origin' '*'
+        - add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS'
+        - add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,Accept,Origin'
+        - location @proxy {
+            error_page 502 = @fallback;
+            uwsgi_pass unix:///tmp/uwsgi.sock;
+            include uwsgi_params;
+          }
+        - location / {
+            try_files $uri $uri/ @proxy;
+          }
+        - location @fallback {
+            default_type application/json;
+            return 502 '{"message":"Temporarily unavailable"}';
+          }

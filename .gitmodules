@@ -1,0 +1,3 @@
+[submodule "vagrant/ansible/roles/nginx"]
+	path = vagrant/ansible/roles/nginx
+	url = https://github.com/jdauphant/ansible-role-nginx.git
