@@ -71,3 +71,21 @@
     state: present
     regexp: "^#force_color_prompt="
     line: "force_color_prompt=yes"
+
+- name: Static Site Directory
+  file:
+    path: /opt/web/static/
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0555
+    recurse: yes
+
+- name: Dummy index.html file
+  copy:
+    content: "open-notify.org"
+    dest: /opt/web/static/index.html
+    owner: www-data
+    group: www-data
+    mode: 0444
+    force: no
