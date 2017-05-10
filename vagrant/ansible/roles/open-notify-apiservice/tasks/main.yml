@@ -1,0 +1,43 @@
+---
+- name: Update Apt
+  apt: update_cache=yes
+
+
+- name: Install Python Runtime
+  apt: name={{ item }} state=present
+  with_items:
+    - python3.4
+    - python3-virtualenv
+
+
+- name: Install UWSGI
+  apt: name={{ item }} state=present
+  with_items:
+    - uwsgi
+    - uwsgi-plugin-python3
+
+
+- name: Install Redis
+  apt: name={{ item }} state=present
+  with_items:
+    - redis-server
+
+
+- name: Create a System Service For API
+  copy:
+    content: |
+        [Unit]
+        Description=uWSGI Module
+        After=syslog.target
+        
+        [Service]
+        ExecStart=/usr/bin/uwsgi --ini /opt/venvs/Open-Notify-API/production.ini
+        Restart=always
+        KillSignal=SIGQUIT
+        Type=notify
+        StandardError=syslog
+        NotifyAccess=main
+    dest: /etc/systemd/system/open-notify-api.service
+
+- name: Register open-notify-api.service
+  systemd: name=open-notify-api daemon_reload=yes

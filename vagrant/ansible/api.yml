@@ -4,3 +4,4 @@
   become_method: sudo
   roles:
     - open-notify-webserver
+    - open-notify-apiservice
