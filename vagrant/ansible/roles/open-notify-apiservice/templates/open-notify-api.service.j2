@@ -1,0 +1,11 @@
+[Unit]
+Description=Open Notify API uWSGI Module
+After=syslog.target
+
+[Service]
+ExecStart=/usr/bin/uwsgi --ini /opt/venvs/Open-Notify-API/production.ini
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=main

@@ -24,20 +24,10 @@
 
 
 - name: Create a System Service For API
-  copy:
-    content: |
-        [Unit]
-        Description=uWSGI Module
-        After=syslog.target
-        
-        [Service]
-        ExecStart=/usr/bin/uwsgi --ini /opt/venvs/Open-Notify-API/production.ini
-        Restart=always
-        KillSignal=SIGQUIT
-        Type=notify
-        StandardError=syslog
-        NotifyAccess=main
+  template:
+    src: open-notify-api.service.j2
     dest: /etc/systemd/system/open-notify-api.service
+
 
 - name: Register open-notify-api.service
   systemd: name=open-notify-api daemon_reload=yes
