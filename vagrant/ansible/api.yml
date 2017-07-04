@@ -3,5 +3,6 @@
   become: yes
   become_method: sudo
   roles:
+    - open-notify-server
     - open-notify-webserver
     - open-notify-apiservice
