@@ -93,3 +93,8 @@
     owner: deploy
     group: deploy
     mode: 0554
+
+- name: Add A Fun MOTD
+  template:
+    src: motd.j2
+    dest: /etc/motd
