@@ -4,8 +4,8 @@ require_relative 'settings'
 
 Vagrant.configure("2") do |config|
 
-  # Base image: Debian stable (Jessie, 8)
-  config.vm.box = "debian/jessie64"
+  # Base image: Debian stable (Stretch, 9)
+  config.vm.box = "debian/stretch64"
 
   # We're going to Bridge the network
   config.vm.network :public_network, :use_dhcp_assigned_default_route => true
