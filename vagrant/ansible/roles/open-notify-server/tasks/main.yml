@@ -85,3 +85,11 @@
     owner: deploy
     group: deploy
     mode: 0554
+
+- name: User 'deploy' Copy 'bin' Templates
+  template:
+    src: stop-api.j2
+    dest: /home/deploy/bin/stop-api
+    owner: deploy
+    group: deploy
+    mode: 0554
