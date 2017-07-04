@@ -38,19 +38,38 @@
     state: present
     key: "{{ lookup('pipe', 'ssh-add -L') }}"
 
-- name: User 'deploy' set bashrc alias 'll'
-  lineinfile:
-    dest: /home/deploy/.bashrc
-    state: present
-    regexp: "^#alias ll="
-    line: "alias ll='ls -l'"
+- name: User 'deploy' Create Local 'bin' Directory
+  file:
+    path: /home/deploy/bin/
+    state: directory
+    owner: deploy
+    group: deploy
+    mode: 0755
 
 - name: User 'deploy' set bashrc color term
   lineinfile:
     dest: /home/deploy/.bashrc
     state: present
+    backrefs: yes
     regexp: "^#force_color_prompt="
     line: "force_color_prompt=yes"
+    backup: yes
+
+- name: User 'deploy' set bashrc alias 'll'
+  lineinfile:
+    dest: /home/deploy/.bashrc
+    state: present
+    backrefs: yes
+    regexp: "^#alias ll="
+    line: "alias ll='ls -l'"
+    backup: yes
+
+- name: User 'deploy' Add bin To PATH
+  lineinfile:
+    dest: /home/deploy/.bashrc
+    state: present
+    regexp: '^export PATH="\$PATH:\$HOME\/bin"'
+    line: 'export PATH="$PATH:$HOME/bin"'
 
 - name: User 'deploy' Set '.vimrc'
   template:
@@ -58,3 +77,11 @@
     dest: /home/deploy/.vimrc
     owner: deploy
     group: deploy
+
+- name: User 'deploy' Copy 'bin' Templates
+  template:
+    src: start-api.j2
+    dest: /home/deploy/bin/start-api
+    owner: deploy
+    group: deploy
+    mode: 0554
