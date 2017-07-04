@@ -20,11 +20,11 @@ dependencies:
 
       default:
         - listen 80 default_server
-        - server_name _
+        - server_name ""
         - return 444
       defaulthttps:
         - listen 443 default_server
-        - server_name _
+        - server_name ""
         - return 444
 
       # Enable monitoring
