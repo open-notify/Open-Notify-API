@@ -70,6 +70,16 @@
     state: present
     regexp: '^export PATH="\$PATH:\$HOME\/bin"'
     line: 'export PATH="$PATH:$HOME/bin"'
+    backup: yes
+
+- name: User 'deploy' Color Prompt
+  lineinfile:
+    dest: /home/deploy/.bashrc
+    state: present
+    backrefs: yes
+    regexp: 'PS1=''\${debian_chroot:\+\(\$debian_chroot\)}\\\[\\033\['
+    line: '    PS1=''${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h (PRODUCTION)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '''
+    backup: yes
 
 - name: User 'deploy' Set '.vimrc'
   template:
