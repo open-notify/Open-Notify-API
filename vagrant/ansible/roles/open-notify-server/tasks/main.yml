@@ -112,6 +112,14 @@
     group: deploy
     mode: 0554
 
+- name: User 'deploy' Copy 'bin' Templates
+  template:
+    src: upgrade.j2
+    dest: /home/deploy/bin/upgrade
+    owner: deploy
+    group: deploy
+    mode: 0554
+
 - name: Add A Fun MOTD
   template:
     src: motd.j2
