@@ -1,0 +1,19 @@
+---
+dependencies:
+
+  - role: datadog
+    become: yes
+    datadog_api_key: "{{ open_notify_datadog_api_key }}"
+
+    datadog_checks:
+
+      nginx:
+        init_config:
+        instances:
+          - nginx_status_url: http://localhost:9841/
+
+      redis:
+        init_config:
+        instances:
+          - host: localhost
+            port: 6379

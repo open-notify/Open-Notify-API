@@ -6,3 +6,4 @@
     - open-notify-server
     - open-notify-webserver
     - open-notify-apiservice
+    - open-notify-datadog
