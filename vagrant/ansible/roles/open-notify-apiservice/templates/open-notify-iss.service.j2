@@ -1,0 +1,12 @@
+[Unit]
+Description=Open Notify Update ISS Position Constantly
+After=syslog.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/open-notify/
+ExecStart=/opt/open-notify/runenv/bin/python /opt/open-notify/update_iss_position.py
+StandardOutput=syslog
+StandardError=syslog

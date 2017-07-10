@@ -106,6 +106,22 @@
 
 - name: User 'deploy' Copy 'bin' Templates
   template:
+    src: start-iss.j2
+    dest: /home/deploy/bin/start-iss
+    owner: deploy
+    group: deploy
+    mode: 0554
+
+- name: User 'deploy' Copy 'bin' Templates
+  template:
+    src: stop-iss.j2
+    dest: /home/deploy/bin/stop-iss
+    owner: deploy
+    group: deploy
+    mode: 0554
+
+- name: User 'deploy' Copy 'bin' Templates
+  template:
     src: tail-nginx.j2
     dest: /home/deploy/bin/tail-nginx
     owner: deploy
