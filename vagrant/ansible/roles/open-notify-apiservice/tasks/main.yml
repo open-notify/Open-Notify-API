@@ -17,12 +17,6 @@
     - uwsgi-plugin-python3
 
 
-- name: Install Redis
-  apt: name={{ item }} state=present
-  with_items:
-    - redis-server
-
-
 - name: Create a System Service For API
   template:
     src: open-notify-api.service.j2
