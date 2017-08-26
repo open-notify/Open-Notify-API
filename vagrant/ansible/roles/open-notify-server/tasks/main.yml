@@ -55,15 +55,6 @@
     line: "force_color_prompt=yes"
     backup: yes
 
-- name: User 'deploy' set bashrc alias 'll'
-  lineinfile:
-    dest: /home/deploy/.bashrc
-    state: present
-    backrefs: yes
-    regexp: "^#alias ll="
-    line: "alias ll='ls -l'"
-    backup: yes
-
 - name: User 'deploy' Add bin To PATH
   lineinfile:
     dest: /home/deploy/.bashrc
@@ -88,37 +79,12 @@
     owner: deploy
     group: deploy
 
-- name: User 'deploy' Copy 'bin' Templates
+- name: User 'deploy' Set '.bash_aliases'
   template:
-    src: start-api.j2
-    dest: /home/deploy/bin/start-api
+    src: bash_aliases.j2
+    dest: /home/deploy/.bash_aliases
     owner: deploy
     group: deploy
-    mode: 0554
-
-- name: User 'deploy' Copy 'bin' Templates
-  template:
-    src: stop-api.j2
-    dest: /home/deploy/bin/stop-api
-    owner: deploy
-    group: deploy
-    mode: 0554
-
-- name: User 'deploy' Copy 'bin' Templates
-  template:
-    src: start-iss.j2
-    dest: /home/deploy/bin/start-iss
-    owner: deploy
-    group: deploy
-    mode: 0554
-
-- name: User 'deploy' Copy 'bin' Templates
-  template:
-    src: stop-iss.j2
-    dest: /home/deploy/bin/stop-iss
-    owner: deploy
-    group: deploy
-    mode: 0554
 
 - name: User 'deploy' Copy 'bin' Templates
   template:
