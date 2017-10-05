@@ -185,7 +185,7 @@ def iss_pass():
     lat = request.args.get('lat', False)
     if lat:
         lat = safe_float(lat, (-90.0, 90.0))
-        if not lat:
+        if lat is False:
             return {"message": "failure", "reason": "Latitude must be number between -90.0 and 90.0"}, 400
     else:
         return {"message": "failure", "reason": "Latitude must be specified"}, 400
@@ -193,15 +193,15 @@ def iss_pass():
     lon = request.args.get('lon', False)
     if lon:
         lon = safe_float(lon, (-180.0, 180.0))
-        if not lon:
-            return {"message": "failure", "reason": "Longitue must be number between -180.0 and 180.0"}, 400
+        if lon is False:
+            return {"message": "failure", "reason": "Longitude must be number between -180.0 and 180.0"}, 400
     else:
         return {"message": "failure", "reason": "Longitude must be specified"}, 400
 
     alt = request.args.get('alt', False)
     if alt:
         alt = safe_float(alt, (0, 10000))
-        if not alt:
+        if alt is False:
             return {"message": "failure", "reason": "Altitude must be number between 0 and 10,000"}, 400
     else:
         alt = 100
@@ -209,7 +209,7 @@ def iss_pass():
     n = request.args.get('n', False)
     if n:
         n = safe_float(n, (1, 100))
-        if not n:
+        if n is False:
             return {"message": "failure", "reason": "Number of passes must be number between 1 and 100"}, 400
     else:
         n = 5
