@@ -1,0 +1,22 @@
+---
+
+- name: "APT: Update cache"
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: "APT: Install basic server packages"
+  apt: name={{ item }} state=latest
+  with_items:
+    - vim
+    - tmux
+    - curl
+    - ntp
+    - build-essential
+    - fail2ban
+    - unattended-upgrades
+    - ufw
+
+- name: "APT: Upgrade"
+  apt:
+    upgrade: safe

@@ -2,8 +2,15 @@
 - hosts: all
   become: yes
   become_method: sudo
+
+  # Set variables for a local copy of the API server
+  vars:
+    opnf_env_name: LOCAL
+    opnf_env_color: 32
+
+  # Install our custom roles
   roles:
-    - open-notify-server
+    - open-notify-server        # 'Server' role is basic setup. Users/groups/ssh/apt/security
     - open-notify-webserver
     - open-notify-redis
     - open-notify-apiservice
