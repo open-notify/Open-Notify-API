@@ -13,6 +13,7 @@
     - curl
     - ntp
     - build-essential
+    - openssl
     - fail2ban
     - unattended-upgrades
     - ufw

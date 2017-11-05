@@ -18,6 +18,14 @@
     mode: 0444
     force: no
 
+- name: Copy letsencrypt directory
+  copy:
+    src: letsencrypt
+    dest: /etc/
+    owner: root
+    group: root
+    mode: 0600
+
 - name: "Firewall: Allow Port 80"
   ufw:
     rule: allow

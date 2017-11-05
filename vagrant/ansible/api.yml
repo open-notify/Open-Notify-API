@@ -10,8 +10,8 @@
 
   # Install our custom roles
   roles:
-    - open-notify-server        # 'Server' role is basic setup. Users/groups/ssh/apt/security
-    - open-notify-webserver
+    - open-notify-server        # 'server' role is basic setup. Users/groups/ssh/apt/security
+    - open-notify-webserver     # 'webserver' role installs and configures nginx
     - open-notify-redis
     - open-notify-apiservice
     - open-notify-datadog
