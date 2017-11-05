@@ -17,3 +17,15 @@
     group: www-data
     mode: 0444
     force: no
+
+- name: "Firewall: Allow Port 80"
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+
+- name: "Firewall: Allow Port 443"
+  ufw:
+    rule: allow
+    port: 443
+    proto: tcp
