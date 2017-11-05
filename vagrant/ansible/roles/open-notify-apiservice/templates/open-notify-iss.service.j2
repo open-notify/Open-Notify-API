@@ -10,3 +10,6 @@ WorkingDirectory=/opt/open-notify/
 ExecStart=/opt/open-notify/runenv/bin/python /opt/open-notify/update_iss_position.py
 StandardOutput=syslog
 StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
