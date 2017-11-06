@@ -1,5 +1,8 @@
 ---
 
+- name: Make sure large DH primes exist
+  shell: '[ -f /etc/ssl/private/dhparams.pem ] && echo "DH params already exist" || openssl dhparam -out /etc/ssl/private/dhparams.pem 2048'
+
 - name: Create Static Site Directory
   file:
     path: /opt/web/static/

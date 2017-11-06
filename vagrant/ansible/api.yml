@@ -12,6 +12,6 @@
   roles:
     - open-notify-server        # 'server' role is basic setup. Users/groups/ssh/apt/security
     - open-notify-webserver     # 'webserver' role installs and configures nginx
-    - open-notify-redis
-    - open-notify-apiservice
-    - open-notify-datadog
+    - open-notify-redis         # Install redis server
+    - open-notify-datadog       # Datadog monitor
+    - open-notify-apiservice    # 'apiservice' role sets up for the actual API code to run (python, uwsgi, etc)
