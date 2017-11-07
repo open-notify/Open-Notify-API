@@ -15,3 +15,22 @@
     - open-notify-redis         # Install redis server
     - open-notify-datadog       # Datadog monitor
     - open-notify-apiservice    # 'apiservice' role sets up for the actual API code to run (python, uwsgi, etc)
+
+  tasks:
+
+    - name: Add some help notes to the home directory
+      copy:
+        content: |
+          Help
+          ----
+
+          sudo systemctl reload nginx
+          follow nginx
+          tail-nginx
+          sudo systemctl enable open-notify-api
+          start open-notify-api
+          upgrade
+          sudo tail -F /var/log/uwsgi/open-notify-api-uwsgi.log
+        dest: /home/deploy/help.txt
+        owner: deploy
+        group: deploy
