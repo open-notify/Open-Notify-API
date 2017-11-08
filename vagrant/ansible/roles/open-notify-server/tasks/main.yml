@@ -1,0 +1,45 @@
+---
+
+- name: Pacakges
+  import_tasks: apt.yml
+
+- name: Users
+  import_tasks: users.yml
+
+- name: Add A Fun MOTD
+  template:
+    src: motd.j2
+    dest: /etc/motd
+
+
+# Security:
+
+- name: Adjust APT update intervals
+  template:
+    src: apt_periodic.j2
+    dest: /etc/apt/apt.conf.d/10periodic
+
+- name: "Setup Uncomplicated Firewall, Deny ALL"
+  ufw:
+    state: enabled
+    policy: deny
+
+- name: "Firewall: Allow SSH"
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
+- name: "SSH: Disallow password authentication"
+  lineinfile: dest=/etc/ssh/sshd_config
+              regexp="^PasswordAuthentication"
+              line="PasswordAuthentication no"
+              state=present
+  notify: Restart ssh
+
+- name: "SSH: Disallow root SSH access"
+  lineinfile: dest=/etc/ssh/sshd_config
+              regexp="^PermitRootLogin"
+              line="PermitRootLogin no"
+              state=present
+  notify: Restart ssh

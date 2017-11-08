@@ -1,0 +1,42 @@
+---
+
+- name: Make sure large DH primes exist
+  shell: '[ -f /etc/ssl/private/dhparams.pem ] && echo "DH params already exist" || openssl dhparam -out /etc/ssl/private/dhparams.pem 2048'
+
+- name: Create Static Site Directory
+  file:
+    path: /opt/web/static/
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0555
+    recurse: yes
+
+- name: Dummy index.html file
+  copy:
+    content: "open-notify.org"
+    dest: /opt/web/static/index.html
+    owner: www-data
+    group: www-data
+    mode: 0444
+    force: no
+
+- name: Copy letsencrypt directory
+  copy:
+    src: letsencrypt
+    dest: /etc/
+    owner: root
+    group: root
+    mode: 0600
+
+- name: "Firewall: Allow Port 80"
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+
+- name: "Firewall: Allow Port 443"
+  ufw:
+    rule: allow
+    port: 443
+    proto: tcp

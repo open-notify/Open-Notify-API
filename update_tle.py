@@ -76,6 +76,6 @@ if __name__ == '__main__':
     try:
         update_tle()
         print("Success!")
-    except:
+    except Exception:
         exctype, value = sys.exc_info()[:2]
         print("Error:", exctype, value)

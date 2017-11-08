@@ -1,0 +1,22 @@
+---
+
+- name: Install UWSGI
+  apt: name={{ item }} state=latest
+  with_items:
+    - uwsgi
+    - uwsgi-plugin-python3
+
+- name: Install uwsgi ini File For The API
+  template:
+    src: api-uwsgi.ini.j2
+    dest: /opt/open-notify-api-uwsgi.ini
+
+- name: Create a System Service For API
+  template:
+    src: open-notify-api.service.j2
+    dest: /lib/systemd/system/open-notify-api.service
+
+- name: Create a System Service For Update ISS
+  template:
+    src: open-notify-iss.service.j2
+    dest: /lib/systemd/system/open-notify-iss.service

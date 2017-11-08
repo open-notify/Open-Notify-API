@@ -1,0 +1,9 @@
+[submodule "vagrant/ansible/roles/nginx"]
+	path = vagrant/ansible/roles/nginx
+	url = https://github.com/jdauphant/ansible-role-nginx.git
+[submodule "vagrant/ansible/roles/datadog"]
+	path = vagrant/ansible/roles/datadog
+	url = https://github.com/DataDog/ansible-datadog.git
+[submodule "vagrant/ansible/roles/redis"]
+	path = vagrant/ansible/roles/redis
+	url = https://github.com/DavidWittman/ansible-redis.git

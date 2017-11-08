@@ -1,0 +1,93 @@
+---
+
+- name: Make 'sudo' Group
+  group:
+   name: sudo
+   state: present
+
+- name: Allow Password-less 'sudo'
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+
+- name: Create User 'deploy'
+  user:
+    name: deploy
+    state: present
+    groups: sudo
+    append: yes
+    createhome: yes
+    shell: /bin/bash
+
+- name: Set 'deploy' User Authorized Key From Current User
+  authorized_key:
+    user: deploy
+    state: present
+    key: "{{ lookup('pipe', 'ssh-add -L') }}"
+
+- name: User 'deploy' Create Local 'bin' Directory
+  file:
+    path: /home/deploy/bin/
+    state: directory
+    owner: deploy
+    group: deploy
+    mode: 0755
+
+- name: User 'deploy' set bashrc color term
+  lineinfile:
+    dest: /home/deploy/.bashrc
+    state: present
+    backrefs: yes
+    regexp: "^#force_color_prompt="
+    line: "force_color_prompt=yes"
+    backup: yes
+
+- name: User 'deploy' Add bin To PATH
+  lineinfile:
+    dest: /home/deploy/.bashrc
+    state: present
+    regexp: '^export PATH="\$PATH:\$HOME\/bin"'
+    line: 'export PATH="$PATH:$HOME/bin"'
+    backup: yes
+
+- name: User 'deploy' Color Prompt
+  lineinfile:
+    dest: /home/deploy/.bashrc
+    state: present
+    backrefs: yes
+    regexp: 'PS1=''\${debian_chroot:\+\(\$debian_chroot\)}\\\[\\033\['
+    line: '    PS1=''${debian_chroot:+($debian_chroot)}\[\033[01;{{ opnf_env_color }}m\]\u@\h ({{ opnf_env_name }})\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '''
+    backup: yes
+
+- name: User 'deploy' Set '.vimrc'
+  template:
+    src: vimrc.j2
+    dest: /home/deploy/.vimrc
+    owner: deploy
+    group: deploy
+
+- name: User 'deploy' Set '.bash_aliases'
+  template:
+    src: bash_aliases.j2
+    dest: /home/deploy/.bash_aliases
+    owner: deploy
+    group: deploy
+
+- name: User 'deploy' Copy 'bin' Templates
+  template:
+    src: tail-nginx.j2
+    dest: /home/deploy/bin/tail-nginx
+    owner: deploy
+    group: deploy
+    mode: 0554
+
+- name: User 'deploy' Copy 'bin' Templates
+  template:
+    src: upgrade.j2
+    dest: /home/deploy/bin/upgrade
+    owner: deploy
+    group: deploy
+    mode: 0554
+
