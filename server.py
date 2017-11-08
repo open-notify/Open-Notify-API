@@ -14,6 +14,7 @@ Typical usage:
 This file should do very little. We just want to initialize redis then build
 the HTTP routing table.
 """
+import json
 from falcon import API
 from falcon import HTTP_200, HTTP_503
 from redis import StrictRedis
@@ -28,7 +29,7 @@ redis = StrictRedis(host='localhost', port=6379)
 ERROR_MISSING = '{"message": "error", "reason": "Service temporarily unavailable"}'
 
 
-class OpenNotify():
+class OpenNotify(object):
     """Base Class to handle API GET requests.
 
     Basic GET from redis. Take response, sets headers, looks for a callback
@@ -63,6 +64,18 @@ class OpenNotify():
             response.content_type = "application/json"
 
 
+class Version(object):
+    """Falcon handler to return a version string.
+    """
+
+    def on_get(self, request, response):
+        response.status = HTTP_200
+        response.body = json.dumps({
+            'version': version
+        })
+        response.content_type = "application/json"
+
+
 # Falcon API instance
 api = API()
 
@@ -73,12 +86,15 @@ api.add_route("/iss-now.json", ISSNOW)
 api.add_route("/iss-now/", ISSNOW)
 api.add_route("/iss-now/v1/", ISSNOW)
 
-# TLE Debug info:
-ISSTLE = OpenNotify('iss-tle-info')
-api.add_route("/iss-tle-info.json", ISSTLE)
-
-# How Many People In Space
+# How Many People In Space:
 ASTROS = OpenNotify('people-in-space')
 api.add_route("/astros.json", ASTROS)
 api.add_route("/astros/", ASTROS)
 api.add_route("/astros/v1/", ASTROS)
+
+# TLE Debug info:
+ISSTLE = OpenNotify('iss-tle-info')
+api.add_route("/iss-tle-info.json", ISSTLE)
+
+# Server debug:
+api.add_route("/version.json", Version())
