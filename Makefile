@@ -29,10 +29,11 @@ update_iss: env
 update_astros: env
 	./env/bin/python update_astros.py
 
-patch:
+patch: env
 	./env/bin/bumpversion patch
 
-build:
+build: env
+	./env/bin/gitchangelog > debian/changelog
 	dpkg-buildpackage --unsigned-source --unsigned-changes --build=binary
 	mv ../open-notify-api_*.deb ./
 

@@ -1,0 +1,7 @@
+# -*- coding: utf-8; mode: python -*-
+output_engine = makotemplate(".gitchangelog.tpl")
+
+include_merge = False
+
+tag_filter_regexp = r'^v[0-9]+\.[0-9]+(\.[0-9]+)?$'
+#revs = ["^1.0.0"]

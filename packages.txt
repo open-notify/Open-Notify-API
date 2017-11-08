@@ -4,3 +4,5 @@ uWSGI
 requests
 pyephem
 bumpversion
+gitchangelog
+mako
