@@ -42,9 +42,6 @@ class OpenNotify(object):
         self.redis_key = redis_key
 
     def on_get(self, request, response):
-        # COREs header
-        response.set_header("Access-Control-Allow-Origin", "*")
-
         # Lookup Info, set up error if it's missing
         json_string = redis.get(self.redis_key)
         if not json_string:
