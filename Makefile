@@ -1,5 +1,5 @@
 FLAKEIGNORE=E501,E241
-PYTHONVERSION=python3
+PYTHONVERSION=python3.5
 
 all: local
 
@@ -32,6 +32,10 @@ update_astros: env
 patch:
 	./env/bin/bumpversion patch
 
+build:
+	dpkg-buildpackage --unsigned-source --unsigned-changes --build=binary
+	mv ../open-notify-api_*.deb ./
+
 lint:
 	flake8 --ignore $(FLAKEIGNORE) server.py
 	flake8 --ignore $(FLAKEIGNORE) update_tle.py
@@ -41,3 +45,10 @@ lint:
 clean:
 	rm -rf dummy_env
 	rm -rf env
+	rm -f *.deb
+	rm -rf debian/.debhelper
+	rm -rf debian/open-notify-api
+	rm -f debian/*.log
+	rm -f debian/*.debhelper
+	rm -f debian/*.substvars
+	rm -f debian/debhelper-build-stamp

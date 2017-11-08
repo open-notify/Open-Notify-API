@@ -1,1 +1,1 @@
-sudo stop-issnow && sudo stop-api && sudo dpgk -i $1 && sudo apt-get install -f && sudo start-issnow && sudo start-api
+sudo systemctl stop open-notify-api && sudo dpkg -i $1 && sudo apt-get install -f && sudo systemctl start open-notify-api

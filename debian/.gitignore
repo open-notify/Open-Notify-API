@@ -1,0 +1,8 @@
+.debhelper
+changelog
+debhelper-build-stamp
+files
+*.log
+*.debhelper
+*.substvars
+open-notify-api

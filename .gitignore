@@ -36,3 +36,4 @@ nosetests.xml
 
 env
 dummy_env
+*.deb

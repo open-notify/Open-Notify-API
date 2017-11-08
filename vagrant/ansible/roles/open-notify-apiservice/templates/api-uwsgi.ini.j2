@@ -1,5 +1,7 @@
 [uwsgi]
-wsgi-file = /opt/open-notify/server.py
+plugin = python3
+virtualenv = /opt/venvs/open-notify-api/
+wsgi-file = /opt/venvs/open-notify-api/bin/server.py
 callable = api
 procname-prefix = API-
 socket = /tmp/uwsgi.sock
@@ -8,4 +10,4 @@ gid = www-data
 processes = 1
 workers = 3
 master = true
-logto = /var/log/uwsgi/%n.log
+logto = /dev/null
