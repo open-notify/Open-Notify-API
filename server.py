@@ -18,6 +18,9 @@ from falcon import API
 from falcon import HTTP_200, HTTP_503
 from redis import StrictRedis
 
+# Maintained with bumpversion:
+version='1.0.1'
+
 # Global redis connection
 redis = StrictRedis(host='localhost', port=6379)
 

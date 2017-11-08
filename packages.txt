@@ -1,0 +1,6 @@
+falcon
+redis
+uWSGI
+requests
+pyephem
+bumpversion

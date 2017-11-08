@@ -3,6 +3,12 @@ PYTHONVERSION=python3
 
 all: local
 
+requirements.txt: packages.txt
+	virtualenv --python=`which $(PYTHONVERSION)` ./dummy_env
+	./dummy_env/bin/pip install -r packages.txt
+	./dummy_env/bin/pip freeze > requirements.txt
+	rm -rf dummy_env
+
 env: requirements.txt
 	virtualenv --python=`which $(PYTHONVERSION)` ./env
 	./env/bin/pip install -r requirements.txt
@@ -23,6 +29,9 @@ update_iss: env
 update_astros: env
 	./env/bin/python update_astros.py
 
+patch:
+	./env/bin/bumpversion patch
+
 lint:
 	flake8 --ignore $(FLAKEIGNORE) server.py
 	flake8 --ignore $(FLAKEIGNORE) update_tle.py
@@ -30,4 +39,5 @@ lint:
 	flake8 --ignore $(FLAKEIGNORE) update_astros.py
 
 clean:
+	rm -rf dummy_env
 	rm -rf env
