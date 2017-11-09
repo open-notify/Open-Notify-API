@@ -14,7 +14,6 @@
     - open-notify-webserver     # 'webserver' role installs and configures nginx
     - open-notify-redis         # Install redis server
     - open-notify-datadog       # Datadog monitor
-    - open-notify-apiservice    # 'apiservice' role sets up for the actual API code to run (python, uwsgi, etc)
 
   tasks:
 
@@ -24,10 +23,16 @@
           Help
           ----
 
+          Startup
+          -------
+          sudo dpkg -i *.deb
+          sudo apt-get install -i
+          sudo systemctl enable open-notify-api
+          start open-notify-api
+
           sudo systemctl reload nginx
           follow nginx
           tail-nginx
-          sudo systemctl enable open-notify-api
           start open-notify-api
           upgrade
           sudo tail -F /var/log/uwsgi/open-notify-api-uwsgi.log
