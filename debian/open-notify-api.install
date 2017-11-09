@@ -1,3 +1,4 @@
 static/public/ /opt/web/
 install/open-notify-api-uwsgi.ini /opt
 install/open-notify-api.service /lib/systemd/system
+install/open-notify-issnow.service /lib/systemd/system

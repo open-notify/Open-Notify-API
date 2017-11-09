@@ -1,0 +1,15 @@
+[Unit]
+Description=Open Notify Update ISS Position Constantly
+After=syslog.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/venvs/open-notify-api/
+ExecStart=/opt/venvs/open-notify-api/bin/python /opt/venvs/open-notify-api/bin/update_iss_position.py
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
