@@ -1,0 +1,70 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width,initial-scale=1.0,maximum-scale=1')
+    //- Page metadata
+    title open-notify.org APIs
+    meta(name='description', content="")
+    meta(name='keywords', content="")
+    link(type='text/plain' rel='author' href='/humans.txt')
+    //- CSS
+    link(rel='stylesheet' href='/style.css')
+  body
+
+    header
+      .banner
+        h1
+          a(class="brand" href="https://api.open-notify.org") Open Notify API Server
+        hr
+
+    main
+      .content
+
+        h2 API List
+        ul
+
+          li
+            .api
+              h3 Current location of the International Space Station (ISS)
+              p Returns a JSON structure with the current location on Earth that is directly beneith the ISS at the current time. Updates once per second.
+              p Documentation: #[a(href="http://open-notify.org/Open-Notify-API/ISS-Location-Now/") open-notify.org/Open-Notify-API/ISS-Location-Now/]
+              p.link
+                strong Live API:
+                code #[a(href="https://api.open-notify.org/iss-now.json") https://api.open-notify.org/iss-now.json]
+
+          li
+            .api
+              h3 List of humans in space right now
+              p Returns a JSON structure with a list of every person who is currently in space. Updates on the day that a launch or landing occurs.
+              p Documentation: #[a(href="http://open-notify.org/Open-Notify-API/People-In-Space") open-notify.org/Open-Notify-API/People-In-Space]
+              p.link
+                strong Live API:
+                code #[a(href="https://api.open-notify.org/astros.json") https://api.open-notify.org/astros.json]
+
+          li
+            .api
+              h3 Predictions when the ISS will fly over a location on Earth
+              p Returns a JSON structure with a list of times that the ISS is predicted to be above the horizon at a particular latitude/longitude
+              p Documentation: #[a(href="http://open-notify.org/Open-Notify-API/ISS-Pass-Times") open-notify.org/Open-Notify-API/ISS-Pass-Times]
+              p #[span.warning Note: Still in Beta. Prediction times may not be reliable.]
+              p.link
+                strong Live API:
+                code #[a(href="https://api.open-notify.org/iss-pass.json?lat=39.5&lon=-104.8") https://api.open-notify.org/iss-pass.json?lat=LATITUDE&lon=LONGITUDE]
+        
+        h2 API Status
+        p If you're having trouble connecting to the API check the status page:
+        p
+          a(href="http://status.open-notify.org/") http://status.open-notify.org
+
+        h2 Source Code
+        p This is an open source project. Source code can be found here: #[a(href="https://github.com/open-notify/Open-Notify-API") github.com/open-notify/Open-Notify-API]
+
+        h2 Donate
+        p This is run as a free service. If you enjoy it or use the API for a comercial project please conciter #[a(href="https://www.patreon.com/spaceapi") donating via Patreon] to help keep the API running!
+        p <a href="https://www.patreon.com/bePatron?u=4339711" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+
+    footer
+      p
+        span.left made by #[a(href="https://github.com/natronics") @natronics]
+        span.right Current API version: #[a(href="https://github.com/open-notify/Open-Notify-API/releases/tag/v1.0.4") v1.0.4]

@@ -1,0 +1,18 @@
+{
+  "name": "open-notify-api-staticpage",
+  "version": "1.0.0",
+  "author": "Nathan Bergey",
+  "description": "Static page",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "gulp": "~3.9.1",
+    "gulp-pug": "~3.2.0",
+    "gulp-sass": "~2.3.2",
+    "superstatic": "~4.0.3"
+  },
+  "main": "gulpfile.js"
+}

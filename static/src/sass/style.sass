@@ -1,0 +1,103 @@
+@import 'reset'
+@import 'normalize'
+
+$font-sans:        "Helvetica Neue", Helvetica, Arial, sans-serif
+$primary-color:     #c20
+
+*, h1, h2, h3, h4, h5
+  font-family: $font-sans
+
+hr
+  display: none
+
+body
+  background: #f7f7f7
+
+.container
+  padding-left: 15%
+  padding-right: 15%
+
+header
+  padding-top: 15px
+  padding-bottom: 15px
+  background: #333
+  border-top: 4px solid #000
+  border-bottom: 1px solid #ccc
+
+  .banner
+    @extend .container
+
+  h1
+    margin: 0
+    font-size: 24px
+    line-height: 1.5em
+    font-weight: bold
+
+    a
+      color: #999
+      text-decoration: none
+
+main
+
+  .content
+    @extend .container
+
+  p
+    font-size: 13px
+    line-height: 1.5em
+    color: #333
+
+  h2
+    font-size: 18px
+    line-height: 1.5em
+    font-weight: bold
+    padding-bottom: 0.5em
+    border-bottom: 1px solid #eee
+    margin-top: 1.5em
+    margin-bottom: 1.0em
+
+.api
+  margin-bottom: 2.4em
+
+  h3
+    font-size: 20px
+    line-height: 1.5em
+    font-weight: normal
+
+  .link
+    margin-top: 1.0em
+    margin-left: 2.0em
+
+    strong
+      font-size: 15px
+      margin-right: 0.6em
+
+    code
+      padding: 6px 5px
+      background: #eee
+      -moz-border-radius: 4px / 4px
+      -webkit-border-radius: 4px 4px
+      border-radius: 4px / 4px
+
+      a
+        color: #111
+        text-decoration: none
+
+  .warning
+    font-style: italic
+    font-weight: bold
+
+footer
+  @extend .container
+  margin-top: 200px
+  border-top: 1px solid #ddd
+  padding-top: 2.0em
+  padding-bottom: 3.0em
+  color: #444
+  font-size: 13px
+
+  .left
+    float: left
+
+  .right
+    float: right
