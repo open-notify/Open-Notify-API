@@ -33,6 +33,7 @@ patch: env
 	./env/bin/bumpversion patch
 
 build: env
+	cd static; make
 	./env/bin/gitchangelog > debian/changelog
 	dpkg-buildpackage --unsigned-source --unsigned-changes --build=binary
 	mv ../open-notify-api_*.deb ./

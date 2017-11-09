@@ -5,7 +5,7 @@
 
 - name: Create Static Site Directory
   file:
-    path: /opt/web/static/
+    path: /opt/web/public/
     state: directory
     owner: www-data
     group: www-data
@@ -15,7 +15,7 @@
 - name: Dummy index.html file
   copy:
     content: "open-notify.org"
-    dest: /opt/web/static/index.html
+    dest: /opt/web/public/index.html
     owner: www-data
     group: www-data
     mode: 0444

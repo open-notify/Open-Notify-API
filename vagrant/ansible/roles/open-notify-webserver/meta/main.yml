@@ -45,7 +45,7 @@ dependencies:
         - listen 80
         - server_name *.open-notify.org
         - access_log /var/log/nginx/iss.access.log apilog
-        - root /opt/web/static/
+        - root /opt/web/public/
         - add_header 'Access-Control-Allow-Origin' '*'
         - add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS'
         - add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,Accept,Origin'
@@ -66,7 +66,7 @@ dependencies:
         - listen 443 ssl
         - server_name *.open-notify.org
         - access_log /var/log/nginx/iss.access.log apilog
-        - root /opt/web/static/
+        - root /opt/web/public/
         - ssl_certificate /etc/letsencrypt/live/api.open-notify.org/fullchain.pem
         - ssl_certificate_key /etc/letsencrypt/live/api.open-notify.org/privkey.pem
         - ssl_protocols TLSv1.1 TLSv1.2
