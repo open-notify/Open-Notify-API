@@ -1,0 +1,93 @@
+---
+swagger: '2.0'
+
+info:
+  title: Open Notify API
+  description: |
+    Introduction
+    ============
+
+    How bout it
+  contact:
+    name: "Nathan Bergey"
+    email: "nathan@open-notify.org"
+  version: 1.0.4
+  x-logo:
+    url: 'open-notify.png'
+host: api.open-notify.org
+schemes:
+  - https
+
+
+###################################################################################################
+# PATHS
+###################################################################################################
+paths:
+  /iss-now.json:
+    get:
+      summary: Where is the ISS now?
+      description: |
+        The [International Space Station](https://en.wikipedia.org/wiki/International_Space_Station) is moving at close to 28,000 km/h so its location changes really fast! Where is it right now?
+
+        Overview
+        --------
+
+        This is a simple api to return the current location of the ISS. It returns the current latitude and longitude of the space station with a unix timestamp for the time the location was valid. This API takes no inputs.
+
+        Poll Rate
+        ---------
+
+        Please note that there is an inherent uncertainty in the ISS position models that is usually larger than one second. In addition the position is only calculated once per second (the maximum resolution of an integer unix time stamp). So polling more than 1 Hz would be useless except to add unnecessary strain to the servers.
+
+        A single client should try and keep polling to not often than once every second.
+      tags:
+        - Space Station
+      operationId: iss-now
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: "#/definitions/issnow"
+      x-code-samples:
+        - lang: JavaScript
+          source: console.log('Hello World');
+
+
+###################################################################################################
+# DEFINITIONS
+###################################################################################################
+definitions:
+
+  issnow:
+    type: object
+    title: ISS now
+    properties:
+      message:
+        type: string
+        example: "success"
+        description: Option warning message. Currently unused.
+      timestamp:
+        type: integer
+        format: u64
+        example: 1510264935
+        description: Unix timestamp for the position data
+      iss_position:
+        type: object
+        description: Lat/Lon position of the ISS
+        properties:
+          latitude:
+            type: number
+            format: float
+            minimum: -90.0
+            maximum: 90.0
+            example: 12.6066
+            description: The Latitude of the point under the ISS at the 'timestamp' time
+          longitude:
+            type: number
+            format: float
+            minimum: -180.0
+            maximum: 180.0
+            example: -123.4521
+            description: The Longitude of the point under the ISS at the 'timestamp' time

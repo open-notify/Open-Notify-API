@@ -1,4 +1,0 @@
--r ../requirements.txt
-Sphinx==1.4.4
-sphinx-better-theme==0.13
-sphinxcontrib-httpdomain==1.5.0

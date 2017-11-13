@@ -1,0 +1,16 @@
+{
+  "name": "open-notify-api-docs",
+  "version": "1.0.0",
+  "description": "API documentation explorer for Open Notify",
+  "main": "index.js",
+  "scripts": {
+    "test": "swagger validate open-notify.yaml"
+  },
+  "dependencies": {
+    "redoc": "^1.19.1",
+    "swagger": "^0.7.5"
+  },
+  "devDependencies": {
+    "superstatic": "^5.0.1"
+  }
+}
