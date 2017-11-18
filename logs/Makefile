@@ -33,7 +33,9 @@ build_clean:
 	rm -rf build
 	rm -f  debian/debhelper-build-stamp
 	rm -rf debian/open-notify-api-logs
-	rm -f  debian/open-notify-api-logs.*
+	rm -f  debian/open-notify-api-logs.debhelper.*
+	rm -f  debian/open-notify-api-logs.postinst.*
+	rm -f  debian/open-notify-api-logs.substvars
 	rm -f  debian/files
 	rm -rf debian/.debhelper
 	rm -f ../open-notify-api-logs*.*
