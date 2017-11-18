@@ -44,6 +44,12 @@ class Request(object):
         self.protocol = protocol
         self.http_user_agent = http_user_agent
 
+        # Get time units into ms instead of seconds
+        if self.request_time:
+            self.request_time = self.request_time * 1000.0
+        if self.upstream_response_time:
+            self.upstream_response_time = self.upstream_response_time * 1000.0
+
         # Figure out tags based on request_path:
         self.endpoint_tag = "unknown"
         if 'iss-now' in self.request_path:
