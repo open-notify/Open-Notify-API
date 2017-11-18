@@ -1,0 +1,12 @@
+Source: open-notify-api-logs
+Section: python
+Priority: extra
+Maintainer: Nathan Bergey <nathan@open-notify.org>
+Build-Depends: debhelper (>= 9), python3, dh-virtualenv (>= 0.8)
+Standards-Version: 0.1.0
+
+Package: open-notify-api-logs
+Architecture: any
+Pre-Depends: dpkg (>= 1.16.1), ${misc:Pre-Depends}
+Depends: ${python:Depends}, ${misc:Depends}, python3.5
+Description: Open Notify API server
