@@ -12,7 +12,7 @@ dependencies:
         instances:
           - nginx_status_url: http://localhost:9841/
 
-      redis:
+      redisdb:
         init_config:
         instances:
           - host: localhost
