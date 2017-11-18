@@ -1,0 +1,15 @@
+[Unit]
+Description=Open Notify Nginx Log Monitor
+After=syslog.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/venvs/open-notify-api-logs/
+ExecStart=/bin/sh -c 'tail -n 0 -F /var/log/nginx/iss.access.log | /opt/venvs/open-notify-api-logs/bin/datadog-monitor.py'
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
