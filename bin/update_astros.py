@@ -1,3 +1,4 @@
+#!../env/bin/python
 """One-off set the current astronauts in space. Edit the list and run once to update
 """
 from redis import StrictRedis
@@ -17,4 +18,7 @@ astros = [
     {'name': "Peggy Whitson",           'craft': "ISS"},
 ]
 
-redis.set('people-in-space', json.dumps({'message': "success", 'number': len(astros), 'people': astros}))
+
+if __name__ == '__main__':
+    redis.set('people-in-space', json.dumps({'message': "success", 'number': len(astros), 'people': astros}))
+    print("Wrote JSON to Redis key `people-in-space`")
