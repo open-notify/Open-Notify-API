@@ -1,9 +1,11 @@
 import os
 from flask import Flask, request, render_template, send_from_directory
+from flask_cors import CORS
 import iss
 from util import safe_float, json, jsonp
 
 app = Flask(__name__)
+CORS(app)
 
 # APIs:
 API_DEFS = [

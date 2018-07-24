@@ -8,3 +8,4 @@ newrelic==2.66.0.49
 pyephem==3.7.6.0
 redis==2.10.5
 Werkzeug==0.11.10
+Flask-Cors==3.0.6
