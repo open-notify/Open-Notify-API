@@ -25,6 +25,12 @@ API_DEFS = [
         "desc": "The number of people in space at this moment. List of names when known.",
         "doclink": "http://open-notify.org/Open-Notify-API/People-In-Space",
         "docname": "People-In-Space"},
+    {
+        "title": "ISS Path",
+        "link": "/iss-path.json",
+        "desc": "Previous and next 45 minutes ISS location over Earth (latitude/longitude)",
+        "doclink": "http://open-notify.org/Open-Notify-API/ISS-Path",
+        "docname": "ISS-Path"},
 ]
 
 @app.route("/")
@@ -81,6 +87,53 @@ def iss_now():
 
     """
     loc = iss.get_location()
+    return dict({'message': "success"}, **loc), 200
+
+
+################################################################################
+# Previous and next 45 min ISS path
+################################################################################
+@app.route("/iss-path.json")
+@app.route("/iss-path/")
+@app.route("/iss-path/v1/")
+@jsonp
+@json
+def iss_path():
+    """The International Space Station (ISS) is moving at close to 28,000 km/h so its
+    location changes really fast! Where is it going right now?
+
+    This is a simple api to return the position of the last and next 45 minutes location above the Earth of the ISS.
+    It returns the previous and the next latitudes and longitudes of the space station with a unix
+    timestamp for the time the location was valid. This API takes no inputs.
+
+    :status 200: when successful
+
+    :>json str message: Operation status.
+    :>json int timestamp: Unix timestamp for this location.
+    :>json list path: previous 45 min position on Earth directly below the ISS.
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 200 OK
+        Content-Type: application/json
+        
+        {
+          "path: [
+              "delta_minute": -45,
+              "iss_position": {
+                "latitude": -19.783929798887073,
+                "longitude": -72.29753187401747
+              },
+            ...
+          ],
+          "message": "success",
+          "timestamp": 1454357342
+        }
+
+    """
+    loc = iss.get_path()
     return dict({'message': "success"}, **loc), 200
 
 
@@ -240,4 +293,4 @@ def astros():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run()
+    app.run(host=os.getenv('ONA_HOST', '127.0.0.1'), port=int(os.getenv('ONA_PORT', '5000')))

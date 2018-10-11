@@ -26,6 +26,24 @@ def get_location():
     # Return the relevant timestamp and data
     return {"timestamp": timegm(now.timetuple()), "iss_position": {"latitude": lat, "longitude": lon}}
 
+def get_path():
+    """Compute the previous and next 45 min path of the ISS"""
+
+    # Get latest TLE from redis
+    tle = json.loads(r.get("iss_tle"))
+    iss = ephem.readtle(str(tle[0]), str(tle[1]), str(tle[2]))
+
+    # Compute for now
+    now = datetime.datetime.utcnow()
+    path = []
+
+    for delta in range(-45, 46):
+        iss.compute(now+datetime.timedelta(minutes=delta))
+        path.append({"delta_minute":delta, "iss_position": {"latitude": degrees(iss.sublat), "longitude":degrees(iss.sublong)}})
+
+    # Return the relevant timestamp and data
+    return {"timestamp": timegm(now.timetuple()), "path": path}
+
 
 def get_tle():
     """Grab the current TLE"""
