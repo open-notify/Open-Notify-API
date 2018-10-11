@@ -138,6 +138,103 @@ def iss_path():
 
 
 ################################################################################
+# ISS position and path in GeoJSON
+################################################################################
+@app.route("/iss.geojson")
+@jsonp
+@json
+def iss_geojson():
+    """The International Space Station (ISS) is moving at close to 28,000 km/h so its
+    location changes really fast! Where is it going right now?
+
+    This is a simple api to return the position of the last and next 45 minutes location above the Earth of the ISS in GeoJSON format.
+    This API takes no inputs.
+
+    :status 200: when successful
+
+    :>json str message: Operation status.
+    :>json int timestamp: Unix timestamp for this location.
+    :>json list path: previous 45 min position on Earth directly below the ISS.
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 200 OK
+        Content-Type: application/json
+        
+        {
+          "type": "FeatureCollection",
+          "features: [
+              {
+                  "type": "Feature",
+                  "properties": {
+                      "timestamp": 1539288424
+                  },
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                         49.1592790982642,
+                        -35.13438039242428
+                      ]
+                  }
+              },
+              {
+                  "type": "Feature",
+                  "properties": {
+                      "timestamp": 1539288424
+                  },
+                  "geometry": {
+                      "type": "LineString",
+                      "coordinates": [
+                          [
+                            49.1592790982642,
+                            -35.13438039242428
+                          ],
+                          [...],
+                          ...
+                      ]
+                  }
+              }
+          ]
+        }
+
+    """
+    loc = iss.get_location()
+    path = iss.get_path()
+    geojson = {"type": "FeatureCollection", "features": []}
+
+    # Add position
+    geojson['features'].append({
+        "type": "Feature",
+        "properties": {
+            "timestamp": loc['timestamp']
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [loc['iss_position']['longitude'],loc['iss_position']['latitude']]
+        }
+    })
+
+    # Add path
+    path_geom=[]
+    for pos in path['path']:
+        path_geom.append([pos['iss_position']['longitude'], pos['iss_position']['latitude']])
+    geojson['features'].append({
+        "type": "Feature",
+        "properties": {
+            "timestamp": loc['timestamp']
+        },
+        "geometry": {
+            "type": "LineString",
+            "coordinates": path_geom
+        }
+    })
+
+    return dict(geojson), 200
+
+
+################################################################################
 # ISS Orbit Debug
 ################################################################################
 @app.route("/iss-tle-info.json")
