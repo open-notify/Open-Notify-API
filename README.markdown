@@ -1,4 +1,4 @@
-# Open Nofity APIs
+# Open Notify APIs
 
 ![](https://img.shields.io/badge/language-python%202-green.svg)
 [![Build Status](https://travis-ci.org/open-notify/Open-Notify-API.svg)](https://travis-ci.org/open-notify/Open-Notify-API)
