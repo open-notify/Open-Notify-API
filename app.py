@@ -194,7 +194,7 @@ def iss_pass():
     if lon:
         lon = safe_float(lon, (-180.0, 180.0))
         if not lon:
-            return {"message": "failure", "reason": "Longitue must be number between -180.0 and 180.0"}, 400
+            return {"message": "failure", "reason": "Longitude must be number between -180.0 and 180.0"}, 400
     else:
         return {"message": "failure", "reason": "Longitude must be specified"}, 400
 
