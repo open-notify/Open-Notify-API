@@ -55,7 +55,7 @@ _Number_ | The number of passes to return | `n` | `1..100` | &ndash; | <span cla
 {
   "message": "success",
   "request": {
-    "latitude": LATITUE,
+    "latitude": LATITUDE,
     "longitude": LONGITUDE,
     "altitude": ALTITUDE,
     "passes": NUMBER_OF_PASSES,
@@ -78,7 +78,7 @@ Appending a callback request to the query string will return JSONP:
 CALLBACK({
   "message": "success",
   "request": {
-    "latitude": LATITUE,
+    "latitude": LATITUDE,
     "longitude": LONGITUDE,
     "altitude": ALTITUDE,
     "passes": NUMBER_OF_PASSES,
