@@ -6,7 +6,6 @@ title: Open Notify -- API Doc | ISS Pass Times
 
 # International Space Station Pass Times
 
-
 The international space station (ISS) is an orbital outpost circling high above
 out heads. Sometimes it’s overhead, but when? It depends on your location. Given
 a location on Earth (latitude, longitude, and altitude) this API will compute
@@ -21,7 +20,6 @@ weeks, but beware! times are less and less accurate as you go into the future.
 This is because the orbit of the ISS decays unpredictably over time and because
 station controllers periodically move the station to higher and lower orbits
 for docking, re-boost, and debris avoidance.
-
 
 ## Overview
 
@@ -40,13 +38,12 @@ pass has a duration in seconds and a rise time as a unix time stamp.
 This API has 2 required input values and 2 optional ones.
 
 {: .table .table-hover}
-  Inptut    |              Description                     | Query string | Valid Range |  Units  | Required?
- ---------- | -------------------------------------------- | ------------ | ----------- | ------- | ---------
-_Latitude_  | The latitude of the place to predict passes  | `lat`        | `-80..80`   | degrees | <span class="label label-important">YES</span>
-_Longitude_ | The longitude of the place to predict passes | `lon`        | `-180..180` | degrees | <span class="label label-important">YES</span>
-_Altitude_  | The altitude of the place to predict passes  | `alt`        | `0..10,000` | meters  | <span class="label">No</span>
-_Number_    | The number of passes to return               | `n`          | `1..100`    | &ndash; | <span class="label">No</span>
-
+Inptut | Description | Query string | Valid Range | Units | Required?
+---------- | -------------------------------------------- | ------------ | ----------- | ------- | ---------
+_Latitude_ | The latitude of the place to predict passes | `lat` | `-80..80` | degrees | <span class="label label-important">YES</span>
+_Longitude_ | The longitude of the place to predict passes | `lon` | `-180..180` | degrees | <span class="label label-important">YES</span>
+_Altitude_ | The altitude of the place to predict passes | `alt` | `0..10,000` | meters | <span class="label">No</span>
+_Number_ | The number of passes to return | `n` | `1..100` | &ndash; | <span class="label">No</span>
 
 ## Output
 
@@ -54,12 +51,12 @@ _Number_    | The number of passes to return               | `n`          | `1..
 
 <http://api.open-notify.org/iss-pass.json?lat=LAT&lon=LON>
 
-{% highlight javascript %}
+```json
 {
   "message": "success",
   "request": {
     "latitude": LATITUE,
-    "longitude": LONGITUDE, 
+    "longitude": LONGITUDE,
     "altitude": ALTITUDE,
     "passes": NUMBER_OF_PASSES,
     "datetime": REQUEST_TIMESTAMP
@@ -69,7 +66,7 @@ _Number_    | The number of passes to return               | `n`          | `1..
     ...
   ]
 }
-{% endhighlight %}
+```
 
 ### JSONP
 
@@ -77,12 +74,12 @@ Appending a callback request to the query string will return JSONP:
 
 <http://api.open-notify.org/iss-pass.json?lat=LAT&lon=LON&callback=CALLBACK>
 
-{% highlight javascript %}
+```javascript
 CALLBACK({
   "message": "success",
   "request": {
     "latitude": LATITUE,
-    "longitude": LONGITUDE, 
+    "longitude": LONGITUDE,
     "altitude": ALTITUDE,
     "passes": NUMBER_OF_PASSES,
     "datetime": REQUEST_TIMESTAMP
@@ -92,12 +89,8 @@ CALLBACK({
     ...
   ]
 })
-{% endhighlight %}
-
+```
 
 The values used to calculate the upcoming passes are returned in
 the `request` object. The `response` is a list of the timestamp
 or each pass along with the `duration` in seconds.
-
-
-

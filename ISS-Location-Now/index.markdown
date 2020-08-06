@@ -22,14 +22,14 @@ timestamp for the time the location was valid. This API takes no inputs.
 
 <http://api.open-notify.org/iss-now.json>
 
-```javascript
+```json
 {
-  "message": "success",
-  "timestamp": UNIX_TIME_STAMP,
-  "iss_position": {
-    "latitude": CURRENT_LATITUDE,
-    "longitude": CURRENT_LONGITUDE
-  }
+	"message": "success",
+	"timestamp": UNIX_TIME_STAMP,
+	"iss_position": {
+		"latitude": CURRENT_LATITUDE,
+		"longitude": CURRENT_LONGITUDE
+	}
 }
 ```
 
