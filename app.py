@@ -107,7 +107,7 @@ def tle_info():
 @json
 def iss_pass():
     """The international space station (ISS) is an orbital outpost circling
-    high above out heads. Sometimes it's overhead, but when? It depends on your
+    high above our heads. Sometimes it's overhead, but when? It depends on your
     location. Given a location on Earth (latitude, longitude, and altitude)
     this API will compute the next n number of times that the ISS will be
     overhead.
