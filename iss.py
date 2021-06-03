@@ -22,9 +22,10 @@ def get_location():
     iss.compute(now)
     lon = degrees(iss.sublong)
     lat = degrees(iss.sublat)
+    elev = iss.elevation
 
     # Return the relevant timestamp and data
-    return {"timestamp": timegm(now.timetuple()), "iss_position": {"latitude": lat, "longitude": lon}}
+    return {"timestamp": timegm(now.timetuple()), "iss_position": {"latitude": lat, "longitude": lon, "elevation": elev}}
 
 
 def get_tle():
